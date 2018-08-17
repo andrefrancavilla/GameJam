@@ -150,8 +150,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
-  Weapon1: {fileID: 114487647298570400}
   MaxFuel: 120
+  Weapon1: {fileID: 114487647298570400}
+  moveSpeed: 0
+  accelerationBehaviourCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  deltaTimeToDecellerate: 0
+  controlResponsiveness: 0
 --- !u!212 &212517086099692318
 SpriteRenderer:
   m_ObjectHideFlags: 1
