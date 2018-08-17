@@ -40,7 +40,6 @@ GameObject:
   - component: {fileID: 114558397022678522}
   - component: {fileID: 61123765275128640}
   - component: {fileID: 50002001449593502}
-  - component: {fileID: 233168295391239348}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -107,7 +106,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.021310933, y: 0.0015015155}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -118,7 +117,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12, y: 0.07}
+  m_Size: {x: 0.18802963, y: 0.12913749}
   m_EdgeRadius: 0
 --- !u!114 &114487647298570400
 MonoBehaviour:
@@ -149,18 +148,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ddbbd810d5cbf49a5cf835e5a5d662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
   MaxFuel: 120
   Weapon1: {fileID: 114487647298570400}
-  moveSpeed: 0
+  HP: 0
+  moveSpeed: 3
   accelerationBehaviourCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.00000088848174
+      value: 1.5110677
+      inSlope: -0.028734965
+      outSlope: -0.028734965
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16696803
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -0.5110682
+      outSlope: -0.5110682
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  deltaTimeToDecellerate: 0
-  controlResponsiveness: 0
+  deltaTimeToDecellerate: 0.04
+  controlResponsiveness: 0.025
 --- !u!212 &212517086099692318
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -253,26 +270,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!233 &233168295391239348
-HingeJoint2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1818170615491072}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.46520227, y: 0}
-  m_UseMotor: 0
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359

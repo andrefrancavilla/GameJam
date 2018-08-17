@@ -431,11 +431,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114558397022678522, guid: f899c4516d2897b4dae0306b18fd2604,
-        type: 2}
-      propertyPath: accelerationBehaviourCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4576103240415980, guid: f899c4516d2897b4dae0306b18fd2604, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -468,6 +463,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 4705433273643362, guid: f899c4516d2897b4dae0306b18fd2604, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.09
@@ -573,6 +569,9 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 233168295391239348, guid: f899c4516d2897b4dae0306b18fd2604, type: 2}
+=======
+    m_RemovedComponents: []
+>>>>>>> 0f5303f300a4beff4db787025adb245ec01ed159
   m_SourcePrefab: {fileID: 100100000, guid: f899c4516d2897b4dae0306b18fd2604, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1553137420

@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField]
-    [Range(0,1000)]
-    float Speed = 0.1f;
-    [SerializeField]
     float MaxFuel = 120f;
     [SerializeField]
     Weapon Weapon1;
 
     //Character movement
+    public int HP;
     public float moveSpeed;
     public AnimationCurve accelerationBehaviourCurve;
     public float deltaTimeToDecellerate; //Lower the value, the more time it will take for the player to reach 0 velocity
@@ -20,16 +18,11 @@ public class PlayerController : MonoBehaviour {
     Vector2 inputAxis; //Input axis is stored here
     Rigidbody2D ShipRB;
 
-
     float Weapon1Delay;
     float Weapon1Timer=0.0f;
     float CurrentFuel;
     float tMoving;
-   
-	// Use this for initialization
-	void Start () {
-		
-	}
+
     private void Awake()
     {
         ShipRB = GetComponent<Rigidbody2D>();
@@ -59,5 +52,10 @@ public class PlayerController : MonoBehaviour {
             Weapon1Timer = Weapon1Delay;
             Weapon1.FireWeapon();
         }
+    }
+
+    public void DamagePlayer(int damage)
+    {
+        HP -= damage;
     }
 }
