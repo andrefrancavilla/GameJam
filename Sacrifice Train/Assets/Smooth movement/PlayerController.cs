@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField]
-    [Range(0,1000)]
-    float Speed = 0.1f;
-    [SerializeField]
     float MaxFuel = 120f;
     [SerializeField]
     Weapon Weapon1;
@@ -20,16 +17,11 @@ public class PlayerController : MonoBehaviour {
     Vector2 inputAxis; //Input axis is stored here
     Rigidbody2D ShipRB;
 
-
     float Weapon1Delay;
     float Weapon1Timer=0.0f;
     float CurrentFuel;
     float tMoving;
-   
-	// Use this for initialization
-	void Start () {
-		
-	}
+
     private void Awake()
     {
         ShipRB = GetComponent<Rigidbody2D>();
