@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     Weapon Weapon1;
 
     //Character movement
+    public int HP;
     public float moveSpeed;
     public AnimationCurve accelerationBehaviourCurve;
     public float deltaTimeToDecellerate; //Lower the value, the more time it will take for the player to reach 0 velocity
@@ -51,5 +52,10 @@ public class PlayerController : MonoBehaviour {
             Weapon1Timer = Weapon1Delay;
             Weapon1.FireWeapon();
         }
+    }
+
+    public void DamagePlayer(int damage)
+    {
+        HP -= damage;
     }
 }
