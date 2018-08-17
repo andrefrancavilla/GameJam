@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212321731295324162}
   - component: {fileID: 50242702652462554}
   - component: {fileID: 61295859092533732}
-  - component: {fileID: 114193002154691552}
+  - component: {fileID: 114792247256544486}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: Railgun_Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.11, y: 0.13}
   m_EdgeRadius: 0
---- !u!114 &114193002154691552
+--- !u!114 &114792247256544486
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,18 +96,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1026554221928546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2283a7d4db8094540ad6e1b9929f2c5d, type: 3}
+  m_Script: {fileID: 11500000, guid: dc7b9309cccd5ef4a8d46bb76f2925ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectileRB: {fileID: 50242702652462554}
-  ProjectileCollider: {fileID: 61295859092533732}
-  HasGravity: 0
-  Movement: {x: 1, y: 0}
-  Speed: 10
-  Explosion: {fileID: 0}
-  Lifetime: 5
-  Damage: 1
-  Pierce: 0
+  projectileSpeed: 10
+  tBeforeDestruction: 3
 --- !u!212 &212321731295324162
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -142,7 +135,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0.7332263, b: 0.06132078, a: 1}
   m_FlipX: 0

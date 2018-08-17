@@ -4,10 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
+
     [SerializeField]
     float MaxFuel = 120f;
-    [SerializeField]
-    Weapon Weapon1;
 
     //Character movement
     public int HP;
@@ -18,21 +17,17 @@ public class PlayerController : MonoBehaviour {
     Vector2 inputAxis; //Input axis is stored here
     Rigidbody2D ShipRB;
 
-    float Weapon1Delay;
-    float Weapon1Timer=0.0f;
     float CurrentFuel;
     float tMoving;
 
     private void Awake()
     {
         ShipRB = GetComponent<Rigidbody2D>();
-        Weapon1Delay = Weapon1.Delay;
         CurrentFuel = MaxFuel;
     }
     
-    void Update () {
-
-        Weapon1Timer -= Time.deltaTime;
+    void Update ()
+    {
         CurrentFuel -= Time.deltaTime;
 
         //Movement
@@ -46,12 +41,6 @@ public class PlayerController : MonoBehaviour {
         }
 
         ShipRB.velocity = Vector2.Lerp(ShipRB.velocity, new Vector2(inputAxis.x * moveSpeed, inputAxis.y * moveSpeed * accelerationBehaviourCurve.Evaluate(tMoving)), controlResponsiveness);
-        
-        if(Input.GetButton("Fire1") && Weapon1Timer<=0.0f)
-        {
-            Weapon1Timer = Weapon1Delay;
-            Weapon1.FireWeapon();
-        }
     }
 
     public void DamagePlayer(int damage)
