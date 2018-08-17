@@ -1,0 +1,7 @@
+﻿
+
+public enum WAGON_INTERACTION
+{
+    ATTACH_REPAIR_WORKER,
+    DETACH_REPAIR_WORKER
+}
