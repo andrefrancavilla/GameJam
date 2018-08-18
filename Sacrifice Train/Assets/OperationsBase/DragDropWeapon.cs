@@ -40,29 +40,53 @@ public class DragDropWeapon : MonoBehaviour
             Mathf.Infinity, // distance
             LayerMask.NameToLayer("WeaponSlots"));
         
+        
+
         if(hit.collider?.tag == "PrimaryWeapon")
         {
             switch (hit.collider.name)
             {
                 case "Railgun":
-                    if(weaponScript.SetLeftWeapon(WeaponScript.WeaponType.Railgun))
+                    if (!weaponScript.SetLeftWeapon(WeaponType.Railgun))
+                        OnScreenDuplicateWeaponError();
                     break;
                 case "Missile":
-                    if (weaponScript.SetLeftWeapon(WeaponScript.WeaponType.Straight_Line_Missile))
-                        break;
+                    if (!weaponScript.SetLeftWeapon(WeaponType.Straight_Line_Missile))
+                        OnScreenDuplicateWeaponError();
+                    break;
                 case "Bomb":
-                    if (weaponScript.SetLeftWeapon(WeaponScript.WeaponType.Bombs))
-                        break;
-                default:
+                    if (!weaponScript.SetLeftWeapon(WeaponType.Bombs))
+                        OnScreenDuplicateWeaponError();
                     break;
             }
         }
 
         if (hit.collider?.tag == "SecondaryWeapon")
-            // code here
+        {
+            switch (hit.collider.name)
+            {
+                case "Railgun":
+                    if (!weaponScript.SetRightWeapon(WeaponType.Railgun))
+                        OnScreenDuplicateWeaponError();
+                    break;
+                case "Missile":
+                    if (!weaponScript.SetRightWeapon(WeaponType.Straight_Line_Missile))
+                        OnScreenDuplicateWeaponError();
+                    break;
+                case "Bomb":
+                    if (!weaponScript.SetRightWeapon(WeaponType.Bombs))
+                        OnScreenDuplicateWeaponError();
+                    break;
+            }
+        }
     }
 
     void FollowMouse()
+    {
+
+    }
+
+    void OnScreenDuplicateWeaponError()
     {
 
     }
