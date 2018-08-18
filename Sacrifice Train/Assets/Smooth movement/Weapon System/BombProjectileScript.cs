@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class BombProjectileScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public GameObject impactExplosion;
+    public float explosionRadius;
+    public LayerMask explosionInteraction;
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag != "Player")
+        {
+            Collider2D[] coll = Physics2D.OverlapCircleAll(transform.position, explosionRadius, explosionInteraction.value);
+            foreach (Collider2D obj in coll)
+            {
+                Debug.Log("Explosion impacted on " + obj.gameObject.name + ".");
+            }
+            //Instantiate(impactExplosion, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+    }
 }
