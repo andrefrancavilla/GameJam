@@ -11,6 +11,8 @@ public class WeaponScript : MonoBehaviour {
     //Shooting system
     public float primaryWeaponFireRate; //bullets per second
     public float secondaryWeaponFireRate;
+    float primaryWeaponBulletSpread;
+    float secondaryWeaponBulletSpread;
     float primaryFireT;
     public float secondaryFireT;
     int primaryWeaponIndex;
@@ -40,14 +42,17 @@ public class WeaponScript : MonoBehaviour {
                 case WeaponType.Railgun:
                     primaryWeaponIndex = 0;
                     primaryWeaponFireRate = 6;
+                    primaryWeaponBulletSpread = 0.5f;
                     break;
                 case WeaponType.Straight_Line_Missile:
                     primaryWeaponIndex = 1;
                     primaryWeaponFireRate = 3;
+                    primaryWeaponBulletSpread = 0.33f;
                     break;
                 case WeaponType.Bombs:
                     primaryWeaponIndex = 2;
                     primaryWeaponFireRate = 2;
+                    primaryWeaponBulletSpread = 0;
                     break;
             }
             primaryProjectile = weaponProjectiles[primaryWeaponIndex];
@@ -60,14 +65,17 @@ public class WeaponScript : MonoBehaviour {
                 case WeaponType.Railgun:
                     secondaryWeaponIndex = 0;
                     secondaryWeaponFireRate = 6;
+                    secondaryWeaponBulletSpread = 0.5f;
                     break;
                 case WeaponType.Straight_Line_Missile:
                     secondaryWeaponIndex = 1;
                     secondaryWeaponFireRate = 3;
+                    secondaryWeaponBulletSpread = 0.33f;
                     break;
                 case WeaponType.Bombs:
                     secondaryWeaponIndex = 2;
                     secondaryWeaponFireRate = 2;
+                    secondaryWeaponBulletSpread = 0;
                     break;
             }
             secondaryProjectile = weaponProjectiles[secondaryWeaponIndex];
@@ -83,13 +91,22 @@ public class WeaponScript : MonoBehaviour {
         //Projectile handle
         if (Input.GetButton("Fire1") && primaryFireT >= 1)
         {
-            Instantiate(primaryProjectile, projectileSpawnPositions[primaryWeaponIndex].position, projectileSpawnPositions[primaryWeaponIndex].rotation);
+            Instantiate(primaryProjectile, projectileSpawnPositions[primaryWeaponIndex].position + Vector3.up * Random.Range(-primaryWeaponBulletSpread / 2, primaryWeaponBulletSpread / 2), projectileSpawnPositions[primaryWeaponIndex].rotation);
             primaryFireT = 0;
         }
         if (Input.GetButton("Fire2") && secondaryFireT >= 1)
         {
-            Instantiate(secondaryProjectile, projectileSpawnPositions[secondaryWeaponIndex].position, projectileSpawnPositions[secondaryWeaponIndex].rotation);
+            Instantiate(secondaryProjectile, projectileSpawnPositions[secondaryWeaponIndex].position + Vector3.up * Random.Range(-secondaryWeaponBulletSpread / 2, secondaryWeaponBulletSpread / 2), projectileSpawnPositions[secondaryWeaponIndex].rotation);
             secondaryFireT = 0;
         }
+    }
+
+    public void SetLeftWeapon(WeaponType weapon)
+    {
+        currentLeftWeapon = weapon;
+    }
+    public void SetRightWeapon(WeaponType weapon)
+    {
+        currentRightWeapon = weapon;
     }
 }
