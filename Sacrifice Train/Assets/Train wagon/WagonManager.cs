@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class WagonHealthManager : MonoBehaviour
+public class WagonManager : MonoBehaviour
 {
-    //public Brain brain;
+    public HenchmenAI henchmenAI;
     
     [Range(0, 10)]
     public int wagonNumber; // set in inspector for marking purposes
+    public List<WagonWeapon> wagonWeapons;  // weapons on the wagon roof
 
     #region CONSTANTS
     const float MAX_HEALTH = 1000;
@@ -51,7 +52,7 @@ public class WagonHealthManager : MonoBehaviour
 
     void DisableWagon()
     {
-        //brain.DisableAllHenchmen(wagonNumber);
+        henchmenAI.DestroyHenchmenByWagon(wagonNumber);
 
         var wagonPrisonerManager = GetComponent<WagonPrisonerManager>();
         if (wagonPrisonerManager != null) wagonPrisonerManager.DisablePrisoners();
@@ -95,5 +96,24 @@ public class WagonHealthManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public WagonWeapon GetClosestAvailableWeapon(Transform henchman)
+    {
+        float currentClosestDistance = 0.0f;
+        WagonWeapon currentClosestHenchman = null;
+        for (int i = 0; i < wagonWeapons.Count; i++)
+        {
+            if (!wagonWeapons[i].IsInUse)
+            {
+                var distance = Vector2.Distance(henchman.position, wagonWeapons[i].transform.position);
+                if (currentClosestDistance < distance)
+                {
+                    currentClosestDistance = distance;
+                    currentClosestHenchman = wagonWeapons[i];
+                }
+            }
+        }
+        return currentClosestHenchman;
     }
 }

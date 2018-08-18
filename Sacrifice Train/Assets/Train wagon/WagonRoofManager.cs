@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WagonRoofManager : MonoBehaviour
 {
     public SpriteRenderer sprRen;   // the sprite renderer of the roof object
-    public List<WagonWeapon> wagonWeapons;  // weapons on the wagon roof
 
     #region CONSTANTS
     const float MAX_HEALTH = 1000.0f;
@@ -93,7 +90,7 @@ public class WagonRoofManager : MonoBehaviour
         }
     }
 
-    public void InteractWithWagon(WAGON_INTERACTION interaction)
+    public void InteractWithWagonRoof(WAGON_INTERACTION interaction)
     {
         switch (interaction)
         {
@@ -106,24 +103,5 @@ public class WagonRoofManager : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    public WagonWeapon GetClosestAvailableWeapon(Transform henchman)
-    {
-        float currentClosestDistance = 0.0f;
-        WagonWeapon currentClosestHenchman = null;
-        for (int i = 0; i < wagonWeapons.Count; i++)
-        {
-            if (!wagonWeapons[i].IsInUse)
-            {
-                var distance = Vector2.Distance(henchman.position, wagonWeapons[i].transform.position);
-                if(currentClosestDistance < distance)
-                {
-                    currentClosestDistance = distance;
-                    currentClosestHenchman = wagonWeapons[i];
-                }
-            }
-        }
-        return currentClosestHenchman;
     }
 }
