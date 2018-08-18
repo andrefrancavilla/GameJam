@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wagon_Weapon
+  - Weapon
+  - WeaponSlot
   layers:
   - Default
   - TransparentFX
