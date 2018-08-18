@@ -1,23 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class WagonPrisonerManager : MonoBehaviour {
 
-    public List<GameObject> prisonerWindows;
+    public Sprite emptyWindow;
+    public List<SpriteRenderer> prisonerWindows;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    int prisonerWindowsLeft;
+    int currentPrisonerWindow;
+
+    void Start()
+    {
+        prisonerWindowsLeft = prisonerWindows.Count;
+        currentPrisonerWindow = 0;
+    }
+
+    public void AbsorbPrisoners()
+    {
+        prisonerWindows[currentPrisonerWindow].sprite = emptyWindow;
+        prisonerWindowsLeft--;
+        currentPrisonerWindow++;
+    }
 
     public void DisablePrisoners()
     {
+        for (int i = 0; i < prisonerWindows.Count; i++)
+        {
+            Destroy(prisonerWindows[i]);
+        }
 
+        enabled = false;
     }
 }

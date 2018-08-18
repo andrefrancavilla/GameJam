@@ -1,10 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class WagonHealthManager : MonoBehaviour
 {
-    public List<GameObject> henchmen;
+    //public Brain brain;
+    
+    [Range(0, 10)]
+    public int wagonNumber; // set in inspector for marking purposes
 
     #region CONSTANTS
     const int MAX_HEALTH = 1000;
@@ -21,16 +23,10 @@ public class WagonHealthManager : MonoBehaviour
     #endregion
 
     [HideInInspector]
-    public int Health { get; private set; }
+    public int Health { get; private set; } = MAX_HEALTH;
 
     [HideInInspector]
-    public int RepairWorkers { get; private set; }
-
-    void Start()
-    {
-        Health = MAX_HEALTH;
-        RepairWorkers = 0;
-    }
+    public int RepairWorkers { get; private set; } = 0;
 
     void Update()
     {
@@ -61,10 +57,7 @@ public class WagonHealthManager : MonoBehaviour
 
     void DisableWagon()
     {
-        for (int i = 0; i < henchmen.Count; i++)
-        {
-            //henchmen[i].GetComponent<AIScript>().DisableHenchman(DISABLE_TYPE.PERMADEATH);
-        }
+        //brain.DisableAllHenchmen(wagonNumber);
 
         var wagonPrisonerManager = GetComponent<WagonPrisonerManager>();
         if (wagonPrisonerManager != null) wagonPrisonerManager.DisablePrisoners();
