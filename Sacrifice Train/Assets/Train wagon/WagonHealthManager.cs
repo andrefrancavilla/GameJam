@@ -1,9 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class WagonHealthManager : MonoBehaviour
 {
+    //public Brain brain;
+    
+    [Range(0, 10)]
+    public int wagonNumber; // set in inspector for marking purposes
+
     #region CONSTANTS
     const int MAX_HEALTH = 1000;
     const int MIN_HEALTH = 0;
@@ -19,41 +23,46 @@ public class WagonHealthManager : MonoBehaviour
     #endregion
 
     [HideInInspector]
-    public int health = MAX_HEALTH;
+    public int Health { get; private set; } = MAX_HEALTH;
 
     [HideInInspector]
-    public int repairWorkers = 0;
+    public int RepairWorkers { get; private set; } = 0;
 
     void Update()
     {
-        if (repairWorkers > 0 && Time.time % SECONDS_PER_TICK == 0)
-            AddHealth(repairWorkers);
+        if (RepairWorkers > 0 && Time.time % SECONDS_PER_TICK == 0)
+            AddHealth();
     }
 
-    void AddHealth(int numOfRepairWorkers)
+    void AddHealth()
     {
-        int sumAddedHealth = numOfRepairWorkers * HEALTH_PER_TICK;
+        int sumAddedHealth = RepairWorkers * HEALTH_PER_TICK;
 
-        if (health + (sumAddedHealth) > MAX_HEALTH)
-            health = MAX_HEALTH;
+        if (Health + (sumAddedHealth) > MAX_HEALTH)
+            Health = MAX_HEALTH;
         else
-            health += sumAddedHealth;
+            Health += sumAddedHealth;
     }
 
     void TakeDmg(int dmg)
     {
-        if (health - dmg < MIN_HEALTH)
+        if (Health - dmg < MIN_HEALTH)
         {
-            health = MIN_HEALTH;
+            Health = MIN_HEALTH;
             DisableWagon();
         }
         else
-            health -= dmg;
+            Health -= dmg;
     }
 
     void DisableWagon()
     {
-        // code here
+        //brain.DisableAllHenchmen(wagonNumber);
+
+        var wagonPrisonerManager = GetComponent<WagonPrisonerManager>();
+        if (wagonPrisonerManager != null) wagonPrisonerManager.DisablePrisoners();
+
+        enabled = false;
     }
 
     public void InteractWithWagon(WAGON_INTERACTION interaction)
@@ -61,10 +70,10 @@ public class WagonHealthManager : MonoBehaviour
         switch (interaction)
         {
             case WAGON_INTERACTION.ATTACH_REPAIR_WORKER:
-                repairWorkers++;
+                RepairWorkers++;
                 break;
             case WAGON_INTERACTION.DETACH_REPAIR_WORKER:
-                repairWorkers--;
+                RepairWorkers--;
                 break;
             default:
                 break;
