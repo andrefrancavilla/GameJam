@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class AcidSpray : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    //[HideInInspector]
+    public bool playerInArea;
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            playerInArea = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        playerInArea = false;
+    }
 }
