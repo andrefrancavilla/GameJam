@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragDropWeapon : MonoBehaviour
-{
-
-
+public class OperationsBaseManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
