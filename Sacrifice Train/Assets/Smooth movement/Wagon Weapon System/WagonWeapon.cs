@@ -52,7 +52,7 @@ public class WagonWeapon : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if(isInUse)
+        if(!isInUse)
         {
 		    if(weaponType == WAGON_WEAPON.ACID_SPRAYER)
             {
@@ -112,6 +112,7 @@ public class WagonWeapon : MonoBehaviour {
 
     public void LaunchCow()
     {
-        Instantiate(cow, cowSpawn.position, cowSpawn.rotation);
+        GameObject clone = Instantiate(cow, cowSpawn.position, cowSpawn.rotation);
+        clone.GetComponent<Rigidbody2D>().velocity = player.transform.position + (Vector3.up * 4) - transform.position;
     }
 }

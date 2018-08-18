@@ -351,7 +351,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1024778239968878}
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0.853, y: -1.477, z: 0}
+  m_LocalPosition: {x: 0.853, y: -1.714, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4576103240415980}
@@ -403,7 +403,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2.52}
+  m_Offset: {x: -0.10000014, y: -0.14999506}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -414,7 +414,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.87, y: 0.52}
+  m_Size: {x: 4.07, y: 1.419971}
   m_EdgeRadius: 0
 --- !u!114 &114546878351149646
 MonoBehaviour:
@@ -468,10 +468,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLeftWeapon: 1
-  currentRightWeapon: 2
+  currentRightWeapon: 3
   weaponProjectiles:
   - {fileID: 1026554221928546, guid: 530d28e13da23ca4781eba18e7c7cae2, type: 2}
-  - {fileID: 1026554221928546, guid: 440722686bdbf3c498aec09d71ea4991, type: 2}
+  - {fileID: 1811447344274042, guid: 305a0b1f6286646d88210d79818e0ef3, type: 2}
   - {fileID: 1026554221928546, guid: 274cc3ea12d211c42b0f785abd44cbe7, type: 2}
   projectileSpawnPositions:
   - {fileID: 4759004549747044}
@@ -5049,7 +5049,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_RenderMode: 0
   m_SortMode: 0
   m_MinParticleSize: 0
