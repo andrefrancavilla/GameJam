@@ -5,17 +5,27 @@ using UnityEngine;
 public class WagonWeapon : MonoBehaviour {
 
     public WAGON_WEAPON weaponType;
+    public float weaponHP;
 
-    public float acidSprayerTickDamage;
+    public int acidSprayerTickDamage;
     public float acidSprayerTickTime; //in seconds
     public float cooldownTimer;
+    public int numberOfTicks;
     public Transform acidSprayerBarrel;
     public Transform aimer;
+    public AcidSpray acidSensing;
     bool acidSprayerFiring;
     PlayerController player;
     public bool IsInUse { get { return IsInUse; } set { IsInUse = value; } }
 
+    public RuntimeAnimatorController catapultAnimator;
+
+    public GameObject cow;
+    public 
+
     float weaponFireT;
+    float cooldownTimerTMem;
+    int tickCount;
 
     public enum WAGON_WEAPON
     {
@@ -26,6 +36,13 @@ public class WagonWeapon : MonoBehaviour {
     private void Awake()
     {
         player = FindObjectOfType<PlayerController>();
+        cooldownTimerTMem = cooldownTimer;
+
+        if(weaponType == WAGON_WEAPON.COW_CATAPULT)
+        {
+            gameObject.AddComponent<Animator>();
+            GetComponent<Animator>().runtimeAnimatorController = catapultAnimator;
+        }
     }
 
     // Update is called once per frame
@@ -33,20 +50,42 @@ public class WagonWeapon : MonoBehaviour {
     {
 		if(weaponType == WAGON_WEAPON.ACID_SPRAYER)
         {
-            acidSprayerBarrel.right = (player.transform.position / 2) - acidSprayerBarrel.position;
+            acidSprayerBarrel.right = Vector3.Lerp(acidSprayerBarrel.right, (player.transform.position / 2) - acidSprayerBarrel.position, 0.05f);
 
             weaponFireT += Time.deltaTime;
-            if(weaponFireT >= acidSprayerTickTime)
+            if (cooldownTimer <= 0)
             {
-
-                weaponFireT = 0;
+                if (weaponFireT >= acidSprayerTickTime)
+                {
+                    if (tickCount < numberOfTicks)
+                    {
+                        if (acidSensing.playerInArea)
+                        {
+                            player.DamagePlayer(acidSprayerTickDamage);
+                        }
+                        tickCount++;
+                        weaponFireT = 0;
+                    }
+                    else
+                        cooldownTimer = cooldownTimerTMem;
+                    weaponFireT = 0;
+                }
             }
+            else
+            {
+                tickCount = 0;
+                cooldownTimer -= Time.deltaTime;
+            }
+        }
+
+        if(weaponHP <= 0)
+        {
+            Destroy(gameObject);
         }
 	}
 
-    float GetClosestAvailableWeapon(GameObject henchman)
+    public void Damage(float damage)
     {
-        float distance = Vector2.Distance(transform.position, henchman.transform.position);
-        return distance;
+        weaponHP -= damage;
     }
 }
