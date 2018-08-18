@@ -7,14 +7,18 @@ public class HenchmenAI : MonoBehaviour {
     List<HenchmanCharacter> henchmenList;
 
     
-    public enum HenchmenState { FireWeapon, FireMachineGuns, RepairWeapon, RepairWagon}
+    public enum HenchmenState { FireWeapon, FireMachineGuns, RepairWeapon, RepairWagon, Idle}
     float[] statePriorities;
     List<HenchmenState> hState;
+    List<bool> assignedHenchmen;
     float playerHealth, weaponHealth, trainHealth, accuracy;
     int shotsFired, shotsHit;
     PestilenceAI pestilenceAI;
     [SerializeField]
     bool debugDestroyWagon = false;
+    [SerializeField]
+    float actionCooldown = 10.0f;
+    float currentCooldown = 0.0f;
     
     //Need a wagon list
 
@@ -29,6 +33,7 @@ public class HenchmenAI : MonoBehaviour {
         pestilenceAI = GameObject.Find("Pestilence").GetComponent<PestilenceAI>();
         statePriorities = new float[5];
         hState = new List<HenchmenState>();
+        assignedHenchmen = new List<bool>();
     }
 
     // Update is called once per frame
@@ -38,47 +43,59 @@ public class HenchmenAI : MonoBehaviour {
             debugDestroyWagon = false;
             DestroyHenchmenByWagon(0);
         }
+        currentCooldown -= Time.deltaTime;
         //Run all this based on an interval, not every frame
-        UpdatePriorities();        
-        int henchmanIndex = 0;
-        List<bool> assignedHenchmen = new List<bool>();
-        //Assign tasks
-        for(int i=0; i<statePriorities.Length; i++)
+        if (currentCooldown <= 0.0f)
         {
-            HenchmenState task = (HenchmenState)GetHighestPriorityTask();
-            for(int j=0; j<henchmenList.Count; j++)
+            currentCooldown = actionCooldown;
+            UpdatePriorities();
+            int henchmanIndex = 0;
+            assignedHenchmen.Clear();
+            hState.Clear();
+            for(int i=0; i< henchmenList.Count; i++)
             {
-                if(assignedHenchmen[j])
+                assignedHenchmen.Add(false);
+                hState.Add(HenchmenState.Idle);
+            }
+            //Assign tasks
+            for (int i = 0; i < statePriorities.Length; i++)
+            {
+                HenchmenState task = (HenchmenState)GetHighestPriorityTask();
+                for (int j = 0; j < henchmenList.Count; j++)
                 {
-                    continue;
-                }
-                //If already at task to be assigned, skip
-                if(hState[j] == task)
-                {
+                    
+                    if (assignedHenchmen[j])
+                    {
+                        continue;
+                    }
+                    //If already at task to be assigned, skip
+                    if (hState[j] == task)
+                    {
+                        assignedHenchmen[j] = true;
+                        continue;
+                    }
+                    //assign task
+                    switch (task)
+                    {
+                        case HenchmenState.FireWeapon:
+                            henchmenList[j].ActionFireWeapon();
+                            break;
+                        case HenchmenState.FireMachineGuns:
+                            henchmenList[j].ActionFireMachineGun();
+                            break;
+                        case HenchmenState.RepairWeapon:
+                            henchmenList[j].ActionRepairWeapon();
+                            break;
+                        case HenchmenState.RepairWagon:
+                            henchmenList[j].ActionRepairWagon();
+                            break;
+                    }
+                    hState[j] = task;
+                    //For weapon, check if weapon is free
+                    //For repair, check if wagon health <50
+                    //For weapon repair, check weapon health
                     assignedHenchmen[j] = true;
-                    continue;
                 }
-                //assign task
-                switch(task)
-                {
-                    case HenchmenState.FireWeapon:
-                        henchmenList[j].ActionFireWeapon();
-                        break;
-                    case HenchmenState.FireMachineGuns:
-                        henchmenList[j].ActionFireMachineGun();
-                        break;
-                    case HenchmenState.RepairWeapon:
-                        henchmenList[j].ActionRepairWeapon();
-                        break;
-                    case HenchmenState.RepairWagon:
-                        henchmenList[j].ActionRepairWagon();
-                        break;
-                }
-                hState[j] = task;
-                //For weapon, check if weapon is free
-                //For repair, check if wagon health <50
-                //For weapon repair, check weapon health
-                assignedHenchmen[j] = true;
             }
         }
     }
@@ -131,6 +148,7 @@ public class HenchmenAI : MonoBehaviour {
         }
         henchmenListByWagon[wagonNo].Add(henchman);
         henchmenList.Add(henchman.GetComponent<HenchmanCharacter>());
+       
     }
     public void DestroyHenchmenByWagon(int wagonNo)
     {
