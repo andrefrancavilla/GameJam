@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour {
     Vector2 inputAxis; //Input axis is stored here
     Rigidbody2D ShipRB;
     float tMoving;
+    float zRot;
 
     private void Awake()
     {
@@ -35,9 +36,11 @@ public class PlayerController : MonoBehaviour {
         }
 
         ShipRB.velocity = Vector2.Lerp(ShipRB.velocity, new Vector2(inputAxis.x * moveSpeed, inputAxis.y * moveSpeed * accelerationBehaviourCurve.Evaluate(tMoving)), controlResponsiveness);
+        zRot = Mathf.Lerp(zRot, 5 * -inputAxis.x, 0.033f);
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, zRot));
     }
 
-    public void DamagePlayer(int damage)
+    public void DamagePlayer(float damage)
     {
         HP -= damage;
     }

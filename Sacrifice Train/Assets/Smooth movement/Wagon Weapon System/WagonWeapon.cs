@@ -22,7 +22,7 @@ public class WagonWeapon : MonoBehaviour {
     public RuntimeAnimatorController catapultAnimator;
 
     public GameObject cow;
-    public 
+    public Transform cowSpawn;
 
     float weaponFireT;
     float cooldownTimerTMem;
@@ -41,41 +41,61 @@ public class WagonWeapon : MonoBehaviour {
 
         if(weaponType == WAGON_WEAPON.COW_CATAPULT)
         {
-            gameObject.AddComponent<Animator>();
-            GetComponent<Animator>().runtimeAnimatorController = catapultAnimator;
+            if(!GetComponent<Animator>())
+            {
+                gameObject.AddComponent<Animator>();
+                GetComponent<Animator>().runtimeAnimatorController = catapultAnimator;
+            }
         }
     }
 
     // Update is called once per frame
     void Update ()
     {
-		if(weaponType == WAGON_WEAPON.ACID_SPRAYER)
+        if(isInUse)
         {
-            acidSprayerBarrel.right = Vector3.Lerp(acidSprayerBarrel.right, (player.transform.position / 2) - acidSprayerBarrel.position, 0.05f);
-
-            weaponFireT += Time.deltaTime;
-            if (cooldownTimer <= 0)
+		    if(weaponType == WAGON_WEAPON.ACID_SPRAYER)
             {
-                if (weaponFireT >= acidSprayerTickTime)
+                acidSprayerBarrel.right = Vector3.Lerp(acidSprayerBarrel.right, (player.transform.position / 2) - acidSprayerBarrel.position, 0.05f);
+
+                weaponFireT += Time.deltaTime;
+                if (cooldownTimer <= 0)
                 {
-                    if (tickCount < numberOfTicks)
+                    if (weaponFireT >= acidSprayerTickTime)
                     {
-                        if (acidSensing.playerInArea)
+                        if (tickCount < numberOfTicks)
                         {
-                            player.DamagePlayer(acidSprayerTickDamage);
+                            if (acidSensing.playerInArea)
+                            {
+                                player.DamagePlayer(acidSprayerTickDamage);
+                            }
+                            tickCount++;
+                            weaponFireT = 0;
                         }
-                        tickCount++;
+                        else
+                            cooldownTimer = cooldownTimerTMem;
                         weaponFireT = 0;
                     }
-                    else
-                        cooldownTimer = cooldownTimerTMem;
-                    weaponFireT = 0;
+                }
+                else
+                {
+                    tickCount = 0;
+                    cooldownTimer -= Time.deltaTime;
                 }
             }
-            else
+
+            if(weaponType == WAGON_WEAPON.COW_CATAPULT)
             {
-                tickCount = 0;
-                cooldownTimer -= Time.deltaTime;
+                if (cooldownTimer <= 0)
+                {
+                    GetComponent<Animator>().SetTrigger("Launch");
+                    cooldownTimer = cooldownTimerTMem;
+                }
+                else
+                {
+                    tickCount = 0;
+                    cooldownTimer -= Time.deltaTime;
+                }
             }
         }
 
@@ -88,5 +108,10 @@ public class WagonWeapon : MonoBehaviour {
     public void Damage(float damage)
     {
         weaponHP -= damage;
+    }
+
+    public void LaunchCow()
+    {
+        Instantiate(cow, cowSpawn.position, cowSpawn.rotation);
     }
 }
