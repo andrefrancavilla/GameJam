@@ -11,24 +11,28 @@ public class DragDropWeapon : MonoBehaviour
     bool isDragging = false;
 
     Vector3 weaponStartPosition;
+    const float SPEED_MODIFIER = 600.0f;
 
-    const float BASE_APPROACH_SPEED = 100.0f;
-    const float TIME_SLOW = 1.0f;
-    const float MIN_DISTANCE = 10.0f;
+    public Transform leftWeaponSlot;
+    public Transform rightWeaponSlot;
 
-    void FixedUpdate ()
+    void Start()
     {
-        if (Input.GetMouseButtonDown(0))
-            TryToDrag();
-        if (isDragging && Input.GetMouseButtonUp(0))
-            ReleaseDragged();
-        if (isDragging)
-            FollowMouse();
+        weaponScript.ToggleFire();   
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) TryToDrag();
+        if (isDragging && Input.GetMouseButtonUp(0)) ReleaseDragged();
+        if (isDragging) FollowMouse();
     }
 
     void TryToDrag()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(
+            Camera.main.ScreenToWorldPoint(Input.mousePosition), 
+            Vector2.zero);
 
         if (hit.collider?.tag == "Weapon")
         {
@@ -42,20 +46,30 @@ public class DragDropWeapon : MonoBehaviour
     void FollowMouse()
     {
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
-        float newX = Mathf.Lerp(draggedWeapon.position.x, mousePos.x, Time.time);
-        float newY = Mathf.Lerp(draggedWeapon.position.y, mousePos.y, Time.time);
-        draggedWeapon.position = new Vector2(newX, newY);
+        var diff = (mousePos - draggedWeapon.position) * SPEED_MODIFIER * Time.deltaTime;
+
+        draggedWeaponRB.velocity = new Vector2(diff.x, diff.y);
     }
 
     void ReleaseDragged()
     {
         isDragging = false;
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        
-        if(hit.collider?.tag == "WeaponSlot")
+        var hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        RaycastHit2D hit = new RaycastHit2D(); int len = hits.Length;
+        for (int i = 0; i < len; i++)
         {
-            if (hit.collider?.name == "LeftWeapon")
+            if (hits[i].collider.tag == "WeaponSlot")
+            {
+                hit = hits[i];
+                break;
+            }
+        }
+        
+        if (hit.collider != null)
+        {
+            Debug.Log("code is called");
+            if (hit.collider.name == "LeftWeapon")
             {
                 switch (draggedWeapon.name)
                 {
@@ -71,7 +85,7 @@ public class DragDropWeapon : MonoBehaviour
                 }
             }
 
-            if (hit.collider?.tag == "RightWeapon")
+            if (hit.collider.tag == "RightWeapon")
             {
                 switch (draggedWeapon.name)
                 {
@@ -87,29 +101,34 @@ public class DragDropWeapon : MonoBehaviour
                 }
             }
         }
-
-        else ResetDragged();
+        else
+        {
+            draggedWeapon.position = weaponStartPosition;
+            ResetDragged();
+        }
     }
 
     void TryApplyingWeapon(WeaponType weapon, bool isLeftWeapon)
     {
         if (isLeftWeapon)
         {
-            if (!weaponScript.SetLeftWeapon(weapon))
-                ResetDragged();
+            if (weaponScript.SetLeftWeapon(weapon))
+            {
+                draggedWeapon.position = leftWeaponSlot.position;
+            }
         }
         else
         {
-            if (!weaponScript.SetRightWeapon(weapon))
-                ResetDragged();
+            if (weaponScript.SetRightWeapon(weapon)) 
+                draggedWeapon.position = rightWeaponSlot.position;
         }
+
+        ResetDragged();
     }
 
     void ResetDragged()
     {
-        draggedWeapon.position = weaponStartPosition;
         draggedWeapon = null;
-        weaponStartPosition = Vector3.zero;
         draggedWeaponRB.velocity = Vector2.zero;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OperationsBaseLauncher : MonoBehaviour
 {
+    public WeaponScript weaponScript;
     public GameObject operationsBase;
     public Animator anim;
     public float transitionTime;
@@ -13,6 +14,7 @@ public class OperationsBaseLauncher : MonoBehaviour
         anim.SetTrigger("GoTransition");
         yield return new WaitForSeconds(transitionTime);
         operationsBase.SetActive(true);
+        weaponScript.ToggleFire();
     }
 
     public void OnTriggerEnter2D(Collider2D other)

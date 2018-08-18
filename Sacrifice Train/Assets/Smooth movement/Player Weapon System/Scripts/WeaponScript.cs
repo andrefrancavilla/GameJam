@@ -49,7 +49,7 @@ public class WeaponScript : MonoBehaviour {
                     primaryWeaponBulletSpread = 0;
                     break;
             }
-            primaryProjectile = weaponProjectiles[primaryWeaponIndex];
+            //primaryProjectile = weaponProjectiles[primaryWeaponIndex];
             previousPrimaryWeapon = currentLeftWeapon;
         }
         if(previousSecondaryWeapon != currentRightWeapon)
