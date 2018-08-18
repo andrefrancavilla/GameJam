@@ -23,14 +23,6 @@ public class WeaponScript : MonoBehaviour {
     //Weapon equipment "sensor" system, to configure weapons when equipped
     WeaponType previousPrimaryWeapon;
     WeaponType previousSecondaryWeapon;
-
-    public enum WeaponType
-    {
-        None = 0,
-        Railgun = 1,
-        Straight_Line_Missile = 2,
-        Bombs = 3
-    }
     
     void Update ()
     {
@@ -101,12 +93,18 @@ public class WeaponScript : MonoBehaviour {
         }
     }
 
-    public void SetLeftWeapon(WeaponType weapon)
+    public bool SetLeftWeapon(WeaponType weapon)
     {
+        if (weapon == currentRightWeapon)
+            return false;
         currentLeftWeapon = weapon;
+        return true;
     }
-    public void SetRightWeapon(WeaponType weapon)
+    public bool SetRightWeapon(WeaponType weapon)
     {
+        if (weapon == currentLeftWeapon)
+            return false;
         currentRightWeapon = weapon;
+        return true;
     }
 }
