@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HenchmanCharacter : MonoBehaviour {
-    float Health;
+    [SerializeField]
+    float maxHealth=30;
+    float currentHealth;
     HenchmenAI.HenchmenState myState;
     HenchmenAI henchmenAI;
+    [HideInInspector]
+    public int wagonNo;
 	// Use this for initialization
 	void Start () {
 		
@@ -21,8 +25,8 @@ public class HenchmanCharacter : MonoBehaviour {
 	}
     public void Damage(float damage)
     {
-        Health -= damage;
-        if(Health<0)
+        currentHealth -= damage;
+        if(currentHealth<0)
         {
 
         }

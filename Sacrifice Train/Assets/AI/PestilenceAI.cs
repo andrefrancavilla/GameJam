@@ -75,7 +75,7 @@ public class PestilenceAI : MonoBehaviour {
     }
     IEnumerator ActionAnimateDead()
     {
-        int currentSpawnPoint;
+        int wagonNumber;
         FindMostDamagedCarriage();
         //Choose spawn point
             //If player health below 50%, spawn there
@@ -83,18 +83,20 @@ public class PestilenceAI : MonoBehaviour {
             //else spawn near player
         if(lowestCarriageHealth<=50.0f && playerHealth >= 50.0f)
         {
-            currentSpawnPoint = lowestCarriageHealthIndex;
+            wagonNumber = lowestCarriageHealthIndex;
         }
         else 
         {
-            currentSpawnPoint = FindSpawnPointNearPlayer();
+            wagonNumber = FindSpawnPointNearPlayer();
         }       
         //Spawn undead
         for(int i=0; i<undeadAnimatedPerAction; i++)
         {
             if (currentHenchmenCount >= maxHenchmen)
                 break;
-            henchmenAI.AddHenchmen(Instantiate(henchmenCharacter, spawnPoints[currentSpawnPoint].transform.position, spawnPoints[currentSpawnPoint].transform.rotation), currentSpawnPoint);
+            GameObject henchman = Instantiate(henchmenCharacter, spawnPoints[wagonNumber].transform.position, spawnPoints[wagonNumber].transform.rotation);
+            henchman.GetComponent<HenchmanCharacter>().wagonNo = wagonNumber;
+            henchmenAI.AddHenchmen(henchman, wagonNumber);
             currentHenchmenCount++;
             yield return new WaitForSeconds(1);
         }
