@@ -8,11 +8,14 @@ public class WagonWeapon : MonoBehaviour {
 
     public float acidSprayerTickDamage;
     public float acidSprayerTickTime; //in seconds
+    public float cooldownTimer;
     public Transform acidSprayerBarrel;
     public Transform aimer;
     bool acidSprayerFiring;
     PlayerController player;
-    
+    public bool IsInUse { get { return IsInUse; } set { IsInUse = value; } }
+
+    float weaponFireT;
 
     public enum WAGON_WEAPON
     {
@@ -30,15 +33,20 @@ public class WagonWeapon : MonoBehaviour {
     {
 		if(weaponType == WAGON_WEAPON.ACID_SPRAYER)
         {
-            /*Vector3 dir = player.transform.position - acidSprayerBarrel.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            acidSprayerBarrel.rotation = Quaternion.AngleAxis(angle, Vector3.forward);*/
             acidSprayerBarrel.right = (player.transform.position / 2) - acidSprayerBarrel.position;
 
-            if (acidSprayerFiring)
+            weaponFireT += Time.deltaTime;
+            if(weaponFireT >= acidSprayerTickTime)
             {
-                //
+
+                weaponFireT = 0;
             }
         }
 	}
+
+    float GetClosestAvailableWeapon(GameObject henchman)
+    {
+        float distance = Vector2.Distance(transform.position, henchman.transform.position);
+        return distance;
+    }
 }

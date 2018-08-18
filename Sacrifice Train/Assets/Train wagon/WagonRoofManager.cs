@@ -5,7 +5,7 @@ using UnityEngine;
 public class WagonRoofManager : MonoBehaviour
 {
     public SpriteRenderer sprRen;   // the sprite renderer of the roof object
-    public List<WagonWeapon> weaponScript;  // weapons on the wagon roof
+    public List<WagonWeapon> wagonWeapons;  // weapons on the wagon roof
 
     #region CONSTANTS
     const float MAX_HEALTH = 1000.0f;
@@ -112,7 +112,7 @@ public class WagonRoofManager : MonoBehaviour
     {
         for (int i = 0; i < wagonWeapons.Count; i++)
         {
-            if (!weaponScript[i].IsInUse) return wagonWeapons[i];
+            if (!wagonWeapons[i].IsInUse) return wagonWeapons[i];
         }
         return null;
     }
