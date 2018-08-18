@@ -81,12 +81,12 @@ public class WeaponScript : MonoBehaviour {
         secondaryFireT += Time.deltaTime * secondaryWeaponFireRate;
 
         //Projectile handle
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && primaryFireT >= 1)
         {
             Instantiate(primaryProjectile, projectileSpawnPositions[primaryWeaponIndex].position, projectileSpawnPositions[primaryWeaponIndex].rotation);
             primaryFireT = 0;
         }
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButton("Fire2") && secondaryFireT >= 1)
         {
             Instantiate(secondaryProjectile, projectileSpawnPositions[secondaryWeaponIndex].position, projectileSpawnPositions[secondaryWeaponIndex].rotation);
             secondaryFireT = 0;
