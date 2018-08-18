@@ -107,7 +107,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   weaponSpread: 0.1
   fireRate: 0.1
-  projectile: {fileID: 1026554221928546, guid: 2198cc6f887d49e4fbdec72ca444006a, type: 2}
+  projectile: {fileID: 1026554221928546, guid: 530d28e13da23ca4781eba18e7c7cae2, type: 2}
 --- !u!212 &212382025070423180
 SpriteRenderer:
   m_ObjectHideFlags: 1
