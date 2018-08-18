@@ -108,12 +108,26 @@ public class WagonRoofManager : MonoBehaviour
         }
     }
 
-    public WagonWeapon GetAvailableWeapon()
+    public WagonWeapon GetClosestAvailableWeapon(Transform henchman)
     {
+        float currentClosestDistance = 0.0f;
+        WagonWeapon currentClosestHenchman = null;
         for (int i = 0; i < wagonWeapons.Count; i++)
         {
+<<<<<<< HEAD
             if (!wagonWeapons[i].IsInUse) return wagonWeapons[i];
+=======
+            if (!weaponScript[i].IsInUse)
+            {
+                var distance = Vector2.Distance(henchman, wagonWeapons[i].transform);
+                if(currentClosestDistance < distance)
+                {
+                    currentClosestDistance = distance;
+                    currentClosestHenchman = wagonWeapons[i];
+                }
+            }
+>>>>>>> 9e1f481508ba9001c2530e3bfe779d581e8e19df
         }
-        return null;
+        return currentClosestHenchman;
     }
 }
