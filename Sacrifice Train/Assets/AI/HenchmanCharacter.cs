@@ -6,6 +6,7 @@ public class HenchmanCharacter : MonoBehaviour {
     [SerializeField]
     float maxHealth=30;
     float currentHealth;
+    [SerializeField]
     HenchmenAI.HenchmenState myState;
     HenchmenAI henchmenAI;
     [HideInInspector]
@@ -19,13 +20,28 @@ public class HenchmanCharacter : MonoBehaviour {
     Rigidbody2D rigidbody;
     [SerializeField]
     PlayerController playerController;
+
+    //Weapon stuff
+    [SerializeField]
+    float weaponSpread= 0.1f;
+    [SerializeField]
+    float fireRate = 0.1f;
+    float currentFireTime = 0.0f;
+    [SerializeField]
+    float repairRate = 1.0f;
+   
+    [SerializeField]
+    GameObject projectile;
+    WagonManager currentWagon;
+
 	// Use this for initialization
 	void Start () {
-		
+        StartCoroutine(MoveCharacter());
 	}
     private void Awake()
     {
         henchmenAI = GameObject.Find("HenchmenManager").GetComponent<HenchmenAI>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         movementVector = Vector2.zero;
     }
 
@@ -57,27 +73,78 @@ public class HenchmanCharacter : MonoBehaviour {
     public void ActionFireMachineGun()
     {
         myState = HenchmenAI.HenchmenState.FireMachineGuns;
+        StartCoroutine(FireMachineGun());
         //Aim at player and shoot projectiles
     }
-    public void ActionRepairWeapon()
+    public void ActionRepairWeapon(WagonWeapon weapon)
     {
         myState = HenchmenAI.HenchmenState.RepairWeapon;
+        targetWeapon = weapon;
+        target = weapon.transform.position;
+        movementVector.x = (target - transform.position).normalized.x;
+
+        //Start coroutine to move to weapon then fire it
+        StartCoroutine(RepairWeapon());
         //Start coroutine to move to weapon and repair it
     }
-    public void ActionRepairWagon()
+    public void ActionRepairWagon(WagonManager wagon)
     {
         myState = HenchmenAI.HenchmenState.RepairWagon;
+        currentWagon = wagon;
+
+        wagon.InteractWithWagon(WAGON_INTERACTION.ATTACH_REPAIR_WORKER);
+        StartCoroutine(RepairWagon());
         //Start coroutine to repair wagon
     }
     IEnumerator FireWeapon()
     {
-        while((transform.position - target).magnitude>0)
+        while((transform.position - target).magnitude>1)
         {
+            //Debug.Log((transform.position - target).magnitude);
             yield return null;
         }
         //Fire weapon
         movementVector = Vector2.zero;
         yield return null;
+    }
+    IEnumerator FireMachineGun()
+    {
+        while (myState == HenchmenAI.HenchmenState.FireMachineGuns)
+        {
+            currentFireTime -= Time.deltaTime;
+            if (currentFireTime <= 0.0f)
+            {
+                currentFireTime = fireRate;
+                Instantiate(projectile, transform.position, Quaternion.LookRotation(playerController.transform.position - transform.position));
+            }
+            yield return null;
+        }
+    }
+    IEnumerator RepairWeapon()
+    {
+        while ((transform.position - target).magnitude > 1)
+        {
+            //Debug.Log((transform.position - target).magnitude);
+            yield return null;
+        }
+        //Repair weapon
+        movementVector = Vector2.zero;
+        while(targetWeapon.weaponHP<=50)
+        {
+            targetWeapon.weaponHP += Time.deltaTime * repairRate;
+            yield return null;
+        }
+        yield return null;
+    }
+    IEnumerator RepairWagon()
+    {
+        movementVector = Vector2.zero;
+        while (currentWagon.Health <= 1000 && myState==HenchmenAI.HenchmenState.RepairWagon)
+        {            
+            yield return null;
+        }
+        myState = HenchmenAI.HenchmenState.Idle;
+        currentWagon.InteractWithWagon(WAGON_INTERACTION.DETACH_REPAIR_WORKER);
     }
     IEnumerator MoveCharacter()
     {

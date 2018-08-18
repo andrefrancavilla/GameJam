@@ -23,6 +23,8 @@ public class WeaponScript : MonoBehaviour {
     //Weapon equipment "sensor" system, to configure weapons when equipped
     WeaponType previousPrimaryWeapon;
     WeaponType previousSecondaryWeapon;
+
+    bool canFire = true;
     
     void Update ()
     {
@@ -81,15 +83,18 @@ public class WeaponScript : MonoBehaviour {
         secondaryFireT += Time.deltaTime * secondaryWeaponFireRate;
 
         //Projectile handle
-        if (Input.GetButton("Fire1") && primaryFireT >= 1)
+        if(canFire)
         {
-            Instantiate(primaryProjectile, projectileSpawnPositions[primaryWeaponIndex].position + Vector3.up * Random.Range(-primaryWeaponBulletSpread / 2, primaryWeaponBulletSpread / 2), projectileSpawnPositions[primaryWeaponIndex].rotation);
-            primaryFireT = 0;
-        }
-        if (Input.GetButton("Fire2") && secondaryFireT >= 1)
-        {
-            Instantiate(secondaryProjectile, projectileSpawnPositions[secondaryWeaponIndex].position + Vector3.up * Random.Range(-secondaryWeaponBulletSpread / 2, secondaryWeaponBulletSpread / 2), projectileSpawnPositions[secondaryWeaponIndex].rotation);
-            secondaryFireT = 0;
+            if (Input.GetButton("Fire1") && primaryFireT >= 1)
+            {
+                Instantiate(primaryProjectile, projectileSpawnPositions[primaryWeaponIndex].position + Vector3.up * Random.Range(-primaryWeaponBulletSpread / 2, primaryWeaponBulletSpread / 2), projectileSpawnPositions[primaryWeaponIndex].rotation);
+                primaryFireT = 0;
+            }
+            if (Input.GetButton("Fire2") && secondaryFireT >= 1)
+            {
+                Instantiate(secondaryProjectile, projectileSpawnPositions[secondaryWeaponIndex].position + Vector3.up * Random.Range(-secondaryWeaponBulletSpread / 2, secondaryWeaponBulletSpread / 2), projectileSpawnPositions[secondaryWeaponIndex].rotation);
+                secondaryFireT = 0;
+            }
         }
     }
 
@@ -106,5 +111,10 @@ public class WeaponScript : MonoBehaviour {
             return false;
         currentRightWeapon = weapon;
         return true;
+    }
+
+    public void ToggleFire()
+    {
+        canFire = !canFire;
     }
 }

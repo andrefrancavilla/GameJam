@@ -29,6 +29,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1356745281196652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4044038050251244}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1369240574737644
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +123,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4044038050251244
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356745281196652}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4279242398544530}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4107870585666908
 Transform:
   m_ObjectHideFlags: 1
@@ -149,6 +177,7 @@ Transform:
   - {fileID: 4107870585666908}
   - {fileID: 4249710690597692}
   - {fileID: 4739886597310244}
+  - {fileID: 4044038050251244}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -230,8 +259,11 @@ MonoBehaviour:
   aimer: {fileID: 0}
   acidSensing: {fileID: 0}
   catapultAnimator: {fileID: 9100000, guid: 98dce5a460ba848cc9a5a2b44f2305b9, type: 2}
-  cow: {fileID: 0}
+  cow: {fileID: 1374515609963290, guid: 9133d7197b2a17f468d22ae421b9bd23, type: 2}
   cowSpawn: {fileID: 4739886597310244}
+  healthBar: {fileID: 1378411949665096, guid: 2f24d554f8ce97e41b6475c8ef05f81b, type: 2}
+  barPosition: {fileID: 4044038050251244}
+  tHpBarIsVisible: 2
 --- !u!212 &212032515372683146
 SpriteRenderer:
   m_ObjectHideFlags: 1
