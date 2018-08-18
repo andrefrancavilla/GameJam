@@ -9,10 +9,10 @@ public class WeaponScript : MonoBehaviour {
     public GameObject[] weaponProjectiles; //hard-coded indexes of each weapon. See weapon autoconfig for projectile index positions.
     public Transform[] projectileSpawnPositions; //Same as above applies here.
     //Shooting system
-    float primaryWeaponFireRate; //bullets per second
-    float secondaryWeaponFireRate;
+    public float primaryWeaponFireRate; //bullets per second
+    public float secondaryWeaponFireRate;
     float primaryFireT;
-    float secondaryFireT;
+    public float secondaryFireT;
     int primaryWeaponIndex;
     int secondaryWeaponIndex;
     GameObject primaryProjectile;
@@ -81,12 +81,12 @@ public class WeaponScript : MonoBehaviour {
         secondaryFireT += Time.deltaTime * secondaryWeaponFireRate;
 
         //Projectile handle
-        if (Input.GetButton("Fire1") && primaryFireT >= 1)
+        if (Input.GetButton("Fire1"))
         {
             Instantiate(primaryProjectile, projectileSpawnPositions[primaryWeaponIndex].position, projectileSpawnPositions[primaryWeaponIndex].rotation);
             primaryFireT = 0;
         }
-        if (Input.GetButton("Fire2") && secondaryFireT >= 1)
+        if (Input.GetButton("Fire2"))
         {
             Instantiate(secondaryProjectile, projectileSpawnPositions[secondaryWeaponIndex].position, projectileSpawnPositions[secondaryWeaponIndex].rotation);
             secondaryFireT = 0;

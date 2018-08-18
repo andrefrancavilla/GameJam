@@ -43,6 +43,3 @@ db.lock
 storage.ide-shm
 storage.ide
 storage.ide-wal
-*.ide-shm
-Sacrifice Train/.vs/Sacrifice Train/v15/Server/sqlite3/storage.ide-shm
-Sacrifice Train/.vs/Sacrifice Train/v15/Server/sqlite3/storage.ide-shm

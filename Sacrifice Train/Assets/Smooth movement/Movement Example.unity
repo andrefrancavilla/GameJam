@@ -664,8 +664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a0a12b9b5b2aa49b5fda825e085179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLeftWeapon: 1
-  currentRightWeapon: 2
+  currentPrimaryWeapon: 1
+  currentSecondaryWeapon: 2
   weaponProjectiles:
   - {fileID: 1026554221928546, guid: 530d28e13da23ca4781eba18e7c7cae2, type: 2}
   - {fileID: 1026554221928546, guid: 440722686bdbf3c498aec09d71ea4991, type: 2}
