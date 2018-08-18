@@ -19,6 +19,8 @@ public class HenchmenAI : MonoBehaviour {
     [SerializeField]
     float actionCooldown = 10.0f;
     float currentCooldown = 0.0f;
+    [SerializeField]
+    WagonManager[] wagonManagerList;
     
     //Need a wagon list
 
@@ -78,7 +80,12 @@ public class HenchmenAI : MonoBehaviour {
                     switch (task)
                     {
                         case HenchmenState.FireWeapon:
-                            henchmenList[j].ActionFireWeapon();
+                            WagonWeapon weapon = wagonManagerList[henchmenList[j].wagonNo].GetClosestAvailableWeapon(henchmenList[j].transform);
+                            if(weapon==null)
+                            {
+                                continue;
+                            }
+                            henchmenList[j].ActionFireWeapon(weapon);
                             break;
                         case HenchmenState.FireMachineGuns:
                             henchmenList[j].ActionFireMachineGun();
