@@ -113,6 +113,99 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &606851916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 606851917}
+  - component: {fileID: 606851919}
+  - component: {fileID: 606851918}
+  m_Layer: 0
+  m_Name: Weapon1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &606851917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606851916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0326, y: 0.0919, z: 0}
+  m_LocalScale: {x: 0.08595, y: 0.5731, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1704063213}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &606851918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606851916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef445265faad2f447bd4036b8ef9b587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
+  acidSprayerTickDamage: 0
+  acidSprayerTickTime: 0
+  cooldownTimer: 0
+  acidSprayerBarrel: {fileID: 0}
+  aimer: {fileID: 0}
+--- !u!212 &606851919
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606851916}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0.36320752, b: 0.36320752, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.16}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &877394757
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +290,9 @@ GameObject:
   - component: {fileID: 1704063213}
   - component: {fileID: 1704063212}
   - component: {fileID: 1704063214}
+  - component: {fileID: 1704063217}
+  - component: {fileID: 1704063216}
+  - component: {fileID: 1704063215}
   m_Layer: 0
   m_Name: TrainCoach1
   m_TagString: Untagged
@@ -261,6 +357,7 @@ Transform:
   m_LocalScale: {x: 130.95027, y: 26.11661, z: 14.574}
   m_Children:
   - {fileID: 877394758}
+  - {fileID: 606851917}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -289,6 +386,46 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &1704063215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704063211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92fb5afdaeed16429ca8533948e92a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptyWindow: {fileID: 0}
+  prisonerWindows: []
+--- !u!114 &1704063216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704063211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45e063e5cb245d42b4f0531b57b1df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprRen: {fileID: 1704063212}
+--- !u!114 &1704063217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1704063211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48df042059051a84aa984a66463ae29b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  henchmenAI: {fileID: 1784643599}
+  wagonNumber: 0
+  wagonWeapons:
+  - {fileID: 606851918}
 --- !u!1 &1778516941 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1818170615491072, guid: f899c4516d2897b4dae0306b18fd2604,
@@ -323,6 +460,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugDestroyWagon: 0
   actionCooldown: 10
+  wagonManagerList:
+  - {fileID: 1704063217}
 --- !u!4 &1784643600
 Transform:
   m_ObjectHideFlags: 0
