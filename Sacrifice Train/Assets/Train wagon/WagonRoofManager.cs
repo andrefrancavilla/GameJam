@@ -114,9 +114,9 @@ public class WagonRoofManager : MonoBehaviour
         WagonWeapon currentClosestHenchman = null;
         for (int i = 0; i < wagonWeapons.Count; i++)
         {
-            if (!weaponScript[i].IsInUse)
+            if (!wagonWeapons[i].IsInUse)
             {
-                var distance = Vector2.Distance(henchman, wagonWeapons[i].transform);
+                var distance = Vector2.Distance(henchman.position, wagonWeapons[i].transform.position);
                 if(currentClosestDistance < distance)
                 {
                     currentClosestDistance = distance;
