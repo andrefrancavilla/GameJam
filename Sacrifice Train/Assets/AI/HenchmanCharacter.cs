@@ -28,7 +28,8 @@ public class HenchmanCharacter : MonoBehaviour {
         currentHealth -= damage;
         if(currentHealth<0)
         {
-
+            henchmenAI.DestroyHenchman(gameObject, wagonNo);
+            Destroy(gameObject);
         }
     }
    
