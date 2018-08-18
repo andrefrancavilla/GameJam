@@ -3,22 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HenchmenAI : MonoBehaviour {
-    List<List<GameObject>> henchmenList;
-    enum HenchmenState { Idle, FireMachineGuns, FireSweepShot, SeekWeapon, FireWeapon, RepairWeapon, RepairWagon }
+    List<List<GameObject>> henchmenListByWagon;
+    List<HenchmanCharacter> henchmenList;
+
+    
+    public enum HenchmenState { FireWeapon, FireMachineGuns, RepairWeapon, RepairWagon}
     float[] statePriorities;
-    HenchmenState[] hState;
+    List<HenchmenState> hState;
     float playerHealth, weaponHealth, trainHealth, accuracy;
+    int shotsFired, shotsHit;
     PestilenceAI pestilenceAI;
     [SerializeField]
     bool debugDestroyWagon = false;
+    
+    //Need a wagon list
+
     // Use this for initialization
     void Start () {
 		
 	}
     private void Awake()
     {
-        henchmenList = new List<List<GameObject>>();
+        henchmenListByWagon = new List<List<GameObject>>();
+        henchmenList = new List<HenchmanCharacter>();
         pestilenceAI = GameObject.Find("Pestilence").GetComponent<PestilenceAI>();
+        statePriorities = new float[5];
+        hState = new List<HenchmenState>();
     }
 
     // Update is called once per frame
@@ -26,38 +36,117 @@ public class HenchmenAI : MonoBehaviour {
 		if(debugDestroyWagon)
         {
             debugDestroyWagon = false;
-            DestroyHenchmen(0);
+            DestroyHenchmenByWagon(0);
         }
+        //Run all this based on an interval, not every frame
+        UpdatePriorities();        
+        int henchmanIndex = 0;
+        List<bool> assignedHenchmen = new List<bool>();
+        //Assign tasks
+        for(int i=0; i<statePriorities.Length; i++)
+        {
+            HenchmenState task = (HenchmenState)GetHighestPriorityTask();
+            for(int j=0; j<henchmenList.Count; j++)
+            {
+                if(assignedHenchmen[j])
+                {
+                    continue;
+                }
+                //If already at task to be assigned, skip
+                if(hState[j] == task)
+                {
+                    assignedHenchmen[j] = true;
+                    continue;
+                }
+                //assign task
+                switch(task)
+                {
+                    case HenchmenState.FireWeapon:
+                        henchmenList[j].ActionFireWeapon();
+                        break;
+                    case HenchmenState.FireMachineGuns:
+                        henchmenList[j].ActionFireMachineGun();
+                        break;
+                    case HenchmenState.RepairWeapon:
+                        henchmenList[j].ActionRepairWeapon();
+                        break;
+                    case HenchmenState.RepairWagon:
+                        henchmenList[j].ActionRepairWagon();
+                        break;
+                }
+                hState[j] = task;
+                //For weapon, check if weapon is free
+                //For repair, check if wagon health <50
+                //For weapon repair, check weapon health
+                assignedHenchmen[j] = true;
+            }
+        }
+    }
+    void UpdatePriorities()
+    {
         //Change priorities
         //If player health low, increase offensive priorities
         //If weapons are damaged, increase priority of repairing weapons
         //If train is damaged, increase priority of repairing armour
         //While firing, if bullets have few hits, do a wide sweep attack
         //Based on final priority scores, choose an action
-
-        //All actions are in a priority queue
-        //Pop the first action, assign as many as possible to it
-        //Pop the next action, do the same
-
-        //Update all henchmen
-        //
+        for (int i = 0; i < statePriorities.Length; i++)
+        {
+            statePriorities[i] = 0;
+        }
+        if(playerHealth<=50)
+        {
+            statePriorities[(int)HenchmenState.FireMachineGuns]++;
+            statePriorities[(int)HenchmenState.FireWeapon]++;
+        }
+        if(weaponHealth<50)
+        {
+            statePriorities[(int)HenchmenState.RepairWeapon]++;
+        }
+        if(trainHealth<50)
+        {
+            statePriorities[(int)HenchmenState.RepairWagon]++;
+        }
+    }
+    int GetHighestPriorityTask()
+    {
+        int currentIndex = 0;
+        float maxPriority = 0;
+        for(int i=0; i<statePriorities.Length; i++)
+        {
+            if(statePriorities[i]>maxPriority)
+            {
+                currentIndex = i;
+                maxPriority = statePriorities[i];
+            }
+        }
+        statePriorities[currentIndex] = -1;
+        return currentIndex;
     }
     public void AddHenchmen(GameObject henchman, int wagonNo)
     {
-        if(henchmenList.Count <= wagonNo)
+        if(henchmenListByWagon.Count <= wagonNo)
         {
-            henchmenList.Add(new List<GameObject>());
+            henchmenListByWagon.Add(new List<GameObject>());
         }
-        henchmenList[wagonNo].Add(henchman);
-
+        henchmenListByWagon[wagonNo].Add(henchman);
+        henchmenList.Add(henchman.GetComponent<HenchmanCharacter>());
     }
-    public void DestroyHenchmen(int wagonNo)
+    public void DestroyHenchmenByWagon(int wagonNo)
     {
-        pestilenceAI.UpdateHenchmenCount(henchmenList[wagonNo].Count);
+        pestilenceAI.UpdateHenchmenCount(henchmenListByWagon[wagonNo].Count *-1);
         //Death animation
-        for(int i=0; i< henchmenList[wagonNo].Count; i++)
+        for(int i=0; i< henchmenListByWagon[wagonNo].Count; i++)
         {
-            GameObject.Destroy(henchmenList[wagonNo][i]);
+            henchmenList.Remove(henchmenListByWagon[wagonNo][i].GetComponent<HenchmanCharacter>());
+            GameObject.Destroy(henchmenListByWagon[wagonNo][i]);
         }
+        henchmenListByWagon[wagonNo].Clear();
+    }
+    public void DestroyHenchman(GameObject henchman, int wagonNo)
+    {
+        pestilenceAI.UpdateHenchmenCount(-1);
+        henchmenList.Remove(henchman.GetComponent<HenchmanCharacter>());
+        henchmenListByWagon[wagonNo].Remove(henchman);
     }
 }
