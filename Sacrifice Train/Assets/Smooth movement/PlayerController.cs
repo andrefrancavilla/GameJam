@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour {
 
     //Character movement
-    public int HP;
+    public float maxHP = 100;
+    public float HP;
     public float moveSpeed;
     public AnimationCurve accelerationBehaviourCurve;
     public float deltaTimeToDecellerate; //Lower the value, the more time it will take for the player to reach 0 velocity
