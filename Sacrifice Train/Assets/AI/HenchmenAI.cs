@@ -53,7 +53,7 @@ public class HenchmenAI : MonoBehaviour {
             UpdatePriorities();
             int henchmanIndex = 0;
             assignedHenchmen.Clear();
-            hState.Clear();
+            //hState.Clear();
             for(int i=0; i< henchmenList.Count; i++)
             {
                 assignedHenchmen.Add(false);

@@ -6,6 +6,7 @@ public class HenchmanCharacter : MonoBehaviour {
     [SerializeField]
     float maxHealth=30;
     float currentHealth;
+    [SerializeField]
     HenchmenAI.HenchmenState myState;
     HenchmenAI henchmenAI;
     [HideInInspector]
@@ -19,13 +20,24 @@ public class HenchmanCharacter : MonoBehaviour {
     Rigidbody2D rigidbody;
     [SerializeField]
     PlayerController playerController;
+
+    //Weapon stuff
+    [SerializeField]
+    float weaponSpread= 0.1f;
+    [SerializeField]
+    float fireRate = 0.1f;
+    float currentFireTime = 0.0f;
+    [SerializeField]
+    GameObject projectile;
+
 	// Use this for initialization
 	void Start () {
-		
+        StartCoroutine(MoveCharacter());
 	}
     private void Awake()
     {
         henchmenAI = GameObject.Find("HenchmenManager").GetComponent<HenchmenAI>();
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         movementVector = Vector2.zero;
     }
 
@@ -57,6 +69,7 @@ public class HenchmanCharacter : MonoBehaviour {
     public void ActionFireMachineGun()
     {
         myState = HenchmenAI.HenchmenState.FireMachineGuns;
+        StartCoroutine(FireMachineGun());
         //Aim at player and shoot projectiles
     }
     public void ActionRepairWeapon()
@@ -71,13 +84,27 @@ public class HenchmanCharacter : MonoBehaviour {
     }
     IEnumerator FireWeapon()
     {
-        while((transform.position - target).magnitude>0)
+        while((transform.position - target).magnitude>1)
         {
+            //Debug.Log((transform.position - target).magnitude);
             yield return null;
         }
         //Fire weapon
         movementVector = Vector2.zero;
         yield return null;
+    }
+    IEnumerator FireMachineGun()
+    {
+        while (myState == HenchmenAI.HenchmenState.FireMachineGuns)
+        {
+            currentFireTime -= Time.deltaTime;
+            if (currentFireTime <= 0.0f)
+            {
+                currentFireTime = fireRate;
+                Instantiate(projectile, transform.position, Quaternion.LookRotation(playerController.transform.position - transform.position));
+            }
+            yield return null;
+        }
     }
     IEnumerator MoveCharacter()
     {

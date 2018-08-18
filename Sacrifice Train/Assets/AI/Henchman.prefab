@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4841330297719990}
   - component: {fileID: 212382025070423180}
   - component: {fileID: 114198312945567090}
+  - component: {fileID: 50550615155372018}
+  - component: {fileID: 61844092922040904}
   m_Layer: 0
   m_Name: Henchman
   m_TagString: Untagged
@@ -41,6 +43,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50550615155372018
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1376627158372766}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 50
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 10
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!61 &61844092922040904
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1376627158372766}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.13, y: 0.13}
+  m_EdgeRadius: 0
 --- !u!114 &114198312945567090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,7 +100,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
+  myState: 4
   wagonNo: 0
+  speed: 3
+  rigidbody: {fileID: 50550615155372018}
+  playerController: {fileID: 0}
+  weaponSpread: 0.1
+  fireRate: 0.1
+  projectile: {fileID: 1026554221928546, guid: 2198cc6f887d49e4fbdec72ca444006a, type: 2}
 --- !u!212 &212382025070423180
 SpriteRenderer:
   m_ObjectHideFlags: 1
