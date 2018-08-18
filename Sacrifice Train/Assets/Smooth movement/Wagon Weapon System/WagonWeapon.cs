@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WagonWeapon : MonoBehaviour {
 
     public WAGON_WEAPON weaponType;
     public float weaponHP;
+    float previousWeaponHP;
+    float initWeaponHP;
 
     public int acidSprayerTickDamage;
     public float acidSprayerTickTime; //in seconds
@@ -23,10 +26,15 @@ public class WagonWeapon : MonoBehaviour {
 
     public GameObject cow;
     public Transform cowSpawn;
+    public GameObject healthBar;
+    public Transform barPosition;
+    public float tHpBarIsVisible;
 
     float weaponFireT;
     float cooldownTimerTMem;
+    float tHpBarIsVisibleMem;
     int tickCount;
+    GameObject hpBar;
 
     public enum WAGON_WEAPON
     {
@@ -38,8 +46,12 @@ public class WagonWeapon : MonoBehaviour {
     {
         player = FindObjectOfType<PlayerController>();
         cooldownTimerTMem = cooldownTimer;
+        previousWeaponHP = weaponHP;
+        tHpBarIsVisibleMem = tHpBarIsVisible;
+        //tHpBarIsVisible = 0;
+        initWeaponHP = weaponHP;
 
-        if(weaponType == WAGON_WEAPON.COW_CATAPULT)
+        if (weaponType == WAGON_WEAPON.COW_CATAPULT)
         {
             if(!GetComponent<Animator>())
             {
@@ -47,12 +59,17 @@ public class WagonWeapon : MonoBehaviour {
                 GetComponent<Animator>().runtimeAnimatorController = catapultAnimator;
             }
         }
+        if (healthBar)
+        {
+            hpBar = Instantiate(healthBar, barPosition.position, barPosition.rotation);
+            hpBar.transform.parent = FindObjectOfType<HeadsUpDisplay>().transform;
+        }
     }
 
     // Update is called once per frame
     void Update ()
     {
-        if(!isInUse)
+        if(isInUse)
         {
 		    if(weaponType == WAGON_WEAPON.ACID_SPRAYER)
             {
@@ -102,8 +119,28 @@ public class WagonWeapon : MonoBehaviour {
         if(weaponHP <= 0)
         {
             Destroy(gameObject);
+            if (hpBar)
+                Destroy(hpBar);
         }
-	}
+
+        //UI stuff
+        if(hpBar)
+        {
+            hpBar.transform.position = barPosition.position;
+            if (previousWeaponHP != weaponHP)
+            {
+                hpBar.SetActive(true);
+                hpBar.transform.GetChild(0).GetComponent<Image>().fillAmount = weaponHP / initWeaponHP;
+                tHpBarIsVisible = tHpBarIsVisibleMem;
+                previousWeaponHP = weaponHP;
+            }
+
+            if (tHpBarIsVisible > 0)
+                tHpBarIsVisible -= Time.deltaTime;
+            else
+                hpBar.SetActive(false);
+        }
+    }
 
     public void Damage(float damage)
     {
