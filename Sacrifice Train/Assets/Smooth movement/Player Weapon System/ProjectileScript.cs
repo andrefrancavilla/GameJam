@@ -9,6 +9,7 @@ public class ProjectileScript : MonoBehaviour {
     public float damage;
     Rigidbody2D rb;
 
+
     // Use this for initialization
     private void Awake()
     {
@@ -23,6 +24,8 @@ public class ProjectileScript : MonoBehaviour {
          * if(collision.gameObject.tag == "Enemy")
          *  collision.gameObject.GetComponent<EnemyAI>().Damage(damage);
         */
+        if (collision.gameObject.tag == "Wagon_Weapon")
+            collision.gameObject.GetComponent<WagonWeapon>().weaponHP -= damage;
         Destroy(gameObject);
     }
 }
