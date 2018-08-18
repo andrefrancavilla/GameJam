@@ -40,4 +40,6 @@ Icon?
 ehthumbs.db
 Thumbs.db
 db.lock
-.vs/
+storage.ide-shm
+storage.ide
+storage.ide-wal
