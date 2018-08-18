@@ -43,6 +43,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1426350488769510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4405302267212952}
+  m_Layer: 0
+  m_Name: Bomb_Spawnpos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1781302415334562
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,7 +87,7 @@ GameObject:
   - component: {fileID: 50002001449593502}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,6 +105,19 @@ Transform:
   m_Father: {fileID: 4576103240415980}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4405302267212952
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426350488769510}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0404, y: -0.117, z: 0}
+  m_LocalScale: {x: 1.0000004, y: 0.9999996, z: 0.99999994}
+  m_Children: []
+  m_Father: {fileID: 4576103240415980}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4458663372228878
 Transform:
   m_ObjectHideFlags: 1
@@ -97,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1116201200606306}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.041, y: -0.248, z: 0}
+  m_LocalPosition: {x: 0.041, y: -0.116999984, z: 0}
   m_LocalScale: {x: 1.0000004, y: 0.9999996, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 4576103240415980}
@@ -110,12 +138,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1818170615491072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2.01, z: 0}
   m_LocalScale: {x: 15.630025, y: 5.1983123, z: 8.3173}
   m_Children:
   - {fileID: 4705433273643362}
   - {fileID: 4390698607294920}
   - {fileID: 4458663372228878}
+  - {fileID: 4405302267212952}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -189,13 +218,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPrimaryWeapon: 1
-  currentSecondaryWeapon: 2
+  currentSecondaryWeapon: 3
   weaponProjectiles:
   - {fileID: 1026554221928546, guid: 530d28e13da23ca4781eba18e7c7cae2, type: 2}
   - {fileID: 1026554221928546, guid: 440722686bdbf3c498aec09d71ea4991, type: 2}
+  - {fileID: 1026554221928546, guid: 274cc3ea12d211c42b0f785abd44cbe7, type: 2}
   projectileSpawnPositions:
   - {fileID: 4390698607294920}
   - {fileID: 4458663372228878}
+  - {fileID: 4405302267212952}
   primaryWeaponFireRate: 0
   secondaryWeaponFireRate: 0
   secondaryFireT: 0
@@ -212,7 +243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxFuel: 120
   HP: 0
-  moveSpeed: 3
+  moveSpeed: 4
   accelerationBehaviourCurve:
     serializedVersion: 2
     m_Curve:
@@ -237,8 +268,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  deltaTimeToDecellerate: 0.04
-  controlResponsiveness: 0.025
+  deltaTimeToDecellerate: 0.033
+  controlResponsiveness: 0.033
 --- !u!212 &212517086099692318
 SpriteRenderer:
   m_ObjectHideFlags: 1

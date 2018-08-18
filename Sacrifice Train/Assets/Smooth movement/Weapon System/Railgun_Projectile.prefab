@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50242702652462554}
   - component: {fileID: 61295859092533732}
   - component: {fileID: 114792247256544486}
+  - component: {fileID: 95105038557760998}
   m_Layer: 8
   m_Name: Railgun_Projectile
   m_TagString: Untagged
@@ -72,7 +73,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -88,6 +89,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.11, y: 0.13}
   m_EdgeRadius: 0
+--- !u!95 &95105038557760998
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1026554221928546}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 011c96b0030dd994693d67a04cd0d2fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114792247256544486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,8 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc7b9309cccd5ef4a8d46bb76f2925ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 10
+  projectileSpeed: 16
   tBeforeDestruction: 3
+  damage: 0
 --- !u!212 &212321731295324162
 SpriteRenderer:
   m_ObjectHideFlags: 1
