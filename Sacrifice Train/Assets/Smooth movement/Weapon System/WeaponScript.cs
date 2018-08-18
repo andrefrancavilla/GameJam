@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour {
 
-    public WeaponList currentPrimaryWeapon;
-    public WeaponList currentSecondaryWeapon;
+    public WeaponType currentLeftWeapon;
+    public WeaponType currentRightWeapon;
     public GameObject[] weaponProjectiles; //hard-coded indexes of each weapon. See weapon autoconfig for projectile index positions.
     public Transform[] projectileSpawnPositions; //Same as above applies here.
     //Shooting system
@@ -19,10 +19,10 @@ public class WeaponScript : MonoBehaviour {
     GameObject secondaryProjectile;
 
     //Weapon equipment "sensor" system, to configure weapons when equipped
-    WeaponList previousPrimaryWeapon;
-    WeaponList previousSecondaryWeapon;
+    WeaponType previousPrimaryWeapon;
+    WeaponType previousSecondaryWeapon;
 
-    public enum WeaponList
+    public enum WeaponType
     {
         None = 0,
         Railgun = 1,
@@ -33,65 +33,60 @@ public class WeaponScript : MonoBehaviour {
     void Update ()
     {
         //Weapon auto-configuration
-        if(previousPrimaryWeapon != currentPrimaryWeapon)
+        if(previousPrimaryWeapon != currentLeftWeapon)
         {
-            switch(currentPrimaryWeapon)
+            switch(currentLeftWeapon)
             {
-                case WeaponList.Railgun:
+                case WeaponType.Railgun:
                     primaryWeaponIndex = 0;
-                    primaryWeaponFireRate = 10;
+                    primaryWeaponFireRate = 6;
                     break;
-                case WeaponList.Straight_Line_Missile:
+                case WeaponType.Straight_Line_Missile:
                     primaryWeaponIndex = 1;
                     primaryWeaponFireRate = 3;
                     break;
-                case WeaponList.Bombs:
+                case WeaponType.Bombs:
                     primaryWeaponIndex = 2;
                     primaryWeaponFireRate = 2;
                     break;
             }
             primaryProjectile = weaponProjectiles[primaryWeaponIndex];
-            previousPrimaryWeapon = currentPrimaryWeapon;
+            previousPrimaryWeapon = currentLeftWeapon;
         }
-        if(previousSecondaryWeapon != currentSecondaryWeapon)
+        if(previousSecondaryWeapon != currentRightWeapon)
         {
-            switch (currentSecondaryWeapon)
+            switch (currentRightWeapon)
             {
-                case WeaponList.Railgun:
+                case WeaponType.Railgun:
                     secondaryWeaponIndex = 0;
-                    secondaryWeaponFireRate = 10;
+                    secondaryWeaponFireRate = 6;
                     break;
-                case WeaponList.Straight_Line_Missile:
+                case WeaponType.Straight_Line_Missile:
                     secondaryWeaponIndex = 1;
                     secondaryWeaponFireRate = 3;
                     break;
-                case WeaponList.Bombs:
+                case WeaponType.Bombs:
                     secondaryWeaponIndex = 2;
                     secondaryWeaponFireRate = 2;
                     break;
             }
             secondaryProjectile = weaponProjectiles[secondaryWeaponIndex];
-            previousSecondaryWeapon = currentSecondaryWeapon;
+            previousSecondaryWeapon = currentRightWeapon;
         }
 
         //Fire handle
-        if (Input.GetButton("Fire1"))
-            primaryFireT += Time.deltaTime * primaryWeaponFireRate;
-        else
-            primaryFireT = 0;
-
-        if (Input.GetButton("Fire2"))
-            secondaryFireT += Time.deltaTime * secondaryWeaponFireRate;
-        else
-            secondaryFireT = 0;
+        if(primaryFireT  < 1)
+        primaryFireT += Time.deltaTime * primaryWeaponFireRate;
+        if(secondaryFireT < 1)
+        secondaryFireT += Time.deltaTime * secondaryWeaponFireRate;
 
         //Projectile handle
-        if(primaryFireT >= 1)
+        if (Input.GetButton("Fire1"))
         {
             Instantiate(primaryProjectile, projectileSpawnPositions[primaryWeaponIndex].position, projectileSpawnPositions[primaryWeaponIndex].rotation);
             primaryFireT = 0;
         }
-        if(secondaryFireT >= 1)
+        if (Input.GetButton("Fire2"))
         {
             Instantiate(secondaryProjectile, projectileSpawnPositions[secondaryWeaponIndex].position, projectileSpawnPositions[secondaryWeaponIndex].rotation);
             secondaryFireT = 0;
