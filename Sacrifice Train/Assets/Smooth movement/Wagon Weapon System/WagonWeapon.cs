@@ -16,7 +16,8 @@ public class WagonWeapon : MonoBehaviour {
     public AcidSpray acidSensing;
     bool acidSprayerFiring;
     PlayerController player;
-    public bool IsInUse { get { return IsInUse; } set { IsInUse = value; } }
+    private bool isInUse;
+    public bool IsInUse { get { return isInUse; } set { isInUse = value; } }
 
     public RuntimeAnimatorController catapultAnimator;
 
