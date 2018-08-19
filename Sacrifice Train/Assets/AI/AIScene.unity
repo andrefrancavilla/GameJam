@@ -1265,6 +1265,7 @@ MonoBehaviour:
   - {fileID: 1704063217}
   - {fileID: 1547422174}
   - {fileID: 1157089825}
+  isWagonEnabled: 
   playerController: {fileID: 0}
 --- !u!4 &1784643600
 Transform:

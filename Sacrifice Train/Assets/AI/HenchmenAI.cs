@@ -21,6 +21,8 @@ public class HenchmenAI : MonoBehaviour {
     float currentCooldown = 0.0f;
     [SerializeField]
     List<WagonManager> wagonManagerList;
+    public bool[] isWagonEnabled;
+
     List<WagonRoofManager> wagonRoofList;
     [SerializeField]
     PlayerController playerController;
@@ -42,9 +44,11 @@ public class HenchmenAI : MonoBehaviour {
         assignedHenchmen = new List<bool>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         wagonRoofList = new List<WagonRoofManager>();
+        isWagonEnabled = new bool[wagonManagerList.Count];
         for(int i=0; i<wagonManagerList.Count; i++)
         {
             wagonRoofList.Add(wagonManagerList[i].GetComponentInChildren<WagonRoofManager>());
+            isWagonEnabled[i] = true;
         }
     }
 
@@ -168,6 +172,8 @@ public class HenchmenAI : MonoBehaviour {
         float wHealth=0.0f;
         for(int i=0; i<wagonManagerList.Count; i++)
         {
+            if (!isWagonEnabled[i])
+                continue;
             for(int j=0; j<wagonManagerList[i].wagonWeapons.Count; j++)
             {
                 wHealth += wagonManagerList[i].wagonWeapons[j].weaponHP;
@@ -180,6 +186,8 @@ public class HenchmenAI : MonoBehaviour {
         float tHealth = 0.0f;
         for(int i=0; i< wagonManagerList.Count; i++)
         {
+            if (!isWagonEnabled[i])
+                continue;
             tHealth += wagonManagerList[i].health;
         }
 
@@ -213,6 +221,8 @@ public class HenchmenAI : MonoBehaviour {
     public void DestroyHenchmenByWagon(int wagonNo)
     {
         pestilenceAI.UpdateHenchmenCount(henchmenListByWagon[wagonNo].Count *-1);
+        isWagonEnabled[wagonNo] = false;
+        pestilenceAI.isWagonEnabled[wagonNo] = false;
         //Death animation
         for(int i=0; i< henchmenListByWagon[wagonNo].Count; i++)
         {

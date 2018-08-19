@@ -9,6 +9,7 @@ public class PestilenceAI : MonoBehaviour {
     GameObject[] spawnPoints;
     [SerializeField]
     WagonManager[] wagonManagerList;
+    public bool[] isWagonEnabled;
     float lowestCarriageHealth;
     int lowestCarriageHealthIndex=0;
     float playerHealth;
@@ -42,6 +43,11 @@ public class PestilenceAI : MonoBehaviour {
 	}
     private void Awake()
     {
+        isWagonEnabled = new bool[wagonManagerList.Length];
+        for(int i=0; i< isWagonEnabled.Length; i++)
+        {
+            isWagonEnabled[i] = true;
+        }
     }
 
     // Update is called once per frame
@@ -171,6 +177,8 @@ public class PestilenceAI : MonoBehaviour {
         int currentMinIndex = 0;
         for (int i = 0; i < wagonManagerList.Length; i++)
         {
+            if (!isWagonEnabled[i])
+                continue;
             if (wagonManagerList[i].health < currentMinHealth)
             {
                 currentMinHealth = wagonManagerList[i].health;
@@ -186,6 +194,8 @@ public class PestilenceAI : MonoBehaviour {
         int index = 0;
         for (int i = 0; i < spawnPoints.Length; i++)
         {
+            if (!isWagonEnabled[i])
+                continue;
             float currentDist = DistanceFromPlayer(spawnPoints[i].transform.position);
             if (currentDist < minDistance)
             {
