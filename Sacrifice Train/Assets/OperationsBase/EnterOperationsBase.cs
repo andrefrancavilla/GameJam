@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class OperationsBaseLauncher : MonoBehaviour
+public class EnterOperationsBase : MonoBehaviour
 {
     public WeaponScript weaponScript;
     public GameObject operationsBase;

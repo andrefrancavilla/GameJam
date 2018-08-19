@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WeaponScript : MonoBehaviour {
 
-    public WeaponType currentLeftWeapon;
-    public WeaponType currentRightWeapon;
+    public WEAPON_TYPE currentLeftWeapon;
+    public WEAPON_TYPE currentRightWeapon;
     public GameObject[] weaponProjectiles; //hard-coded indexes of each weapon. See weapon autoconfig for projectile index positions.
     public Transform[] projectileSpawnPositions; //Same as above applies here.
     //Shooting system
@@ -21,8 +21,8 @@ public class WeaponScript : MonoBehaviour {
     GameObject secondaryProjectile;
 
     //Weapon equipment "sensor" system, to configure weapons when equipped
-    WeaponType previousPrimaryWeapon;
-    WeaponType previousSecondaryWeapon;
+    WEAPON_TYPE previousPrimaryWeapon;
+    WEAPON_TYPE previousSecondaryWeapon;
 
     bool canFire = true;
     
@@ -33,17 +33,17 @@ public class WeaponScript : MonoBehaviour {
         {
             switch(currentLeftWeapon)
             {
-                case WeaponType.Railgun:
+                case WEAPON_TYPE.RAILGUN:
                     primaryWeaponIndex = 0;
                     primaryWeaponFireRate = 6;
                     primaryWeaponBulletSpread = 0.5f;
                     break;
-                case WeaponType.Straight_Line_Missile:
+                case WEAPON_TYPE.MISSILE:
                     primaryWeaponIndex = 1;
                     primaryWeaponFireRate = 3;
                     primaryWeaponBulletSpread = 0.33f;
                     break;
-                case WeaponType.Bombs:
+                case WEAPON_TYPE.BOMBS:
                     primaryWeaponIndex = 2;
                     primaryWeaponFireRate = 2;
                     primaryWeaponBulletSpread = 0;
@@ -56,17 +56,17 @@ public class WeaponScript : MonoBehaviour {
         {
             switch (currentRightWeapon)
             {
-                case WeaponType.Railgun:
+                case WEAPON_TYPE.RAILGUN:
                     secondaryWeaponIndex = 0;
                     secondaryWeaponFireRate = 6;
                     secondaryWeaponBulletSpread = 0.5f;
                     break;
-                case WeaponType.Straight_Line_Missile:
+                case WEAPON_TYPE.MISSILE:
                     secondaryWeaponIndex = 1;
                     secondaryWeaponFireRate = 3;
                     secondaryWeaponBulletSpread = 0.33f;
                     break;
-                case WeaponType.Bombs:
+                case WEAPON_TYPE.BOMBS:
                     secondaryWeaponIndex = 2;
                     secondaryWeaponFireRate = 2;
                     secondaryWeaponBulletSpread = 0;
@@ -98,14 +98,14 @@ public class WeaponScript : MonoBehaviour {
         }
     }
 
-    public bool SetLeftWeapon(WeaponType weapon)
+    public bool SetLeftWeapon(WEAPON_TYPE weapon)
     {
         if (weapon == currentRightWeapon)
             return false;
         currentLeftWeapon = weapon;
         return true;
     }
-    public bool SetRightWeapon(WeaponType weapon)
+    public bool SetRightWeapon(WEAPON_TYPE weapon)
     {
         if (weapon == currentLeftWeapon)
             return false;

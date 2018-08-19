@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
+
 using UnityEngine;
 
 public class DragDropWeapon : MonoBehaviour
@@ -34,12 +34,12 @@ public class DragDropWeapon : MonoBehaviour
             Camera.main.ScreenToWorldPoint(Input.mousePosition), 
             Vector2.zero);
 
-        if (hit.collider?.tag == "Weapon")
+        if (hit.collider?.tag == TAGS_AND_NAMES.PICKABLE_WEAPON)
         {
             draggedWeapon = hit.collider.transform;
             draggedWeaponRB = draggedWeapon.GetComponent<Rigidbody2D>();
             weaponStartPosition = draggedWeapon.position;
-            isDragging = true;
+            ActivateDragging();
         }
     }
 
@@ -53,13 +53,13 @@ public class DragDropWeapon : MonoBehaviour
 
     void ReleaseDragged()
     {
-        isDragging = false;
+        DeactivateDragging();
         var hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         RaycastHit2D hit = new RaycastHit2D(); int len = hits.Length;
         for (int i = 0; i < len; i++)
         {
-            if (hits[i].collider.tag == "WeaponSlot")
+            if (hits[i].collider.tag == TAGS_AND_NAMES.WEAPON_SLOT)
             {
                 hit = hits[i];
                 break;
@@ -68,47 +68,46 @@ public class DragDropWeapon : MonoBehaviour
         
         if (hit.collider != null)
         {
-            Debug.Log("code is called");
-            if (hit.collider.name == "LeftWeapon")
+            if (hit.collider.name == TAGS_AND_NAMES.LEFT_WEAPON_SLOT)
             {
                 switch (draggedWeapon.name)
                 {
-                    case "Railgun":
-                        TryApplyingWeapon(WeaponType.Railgun, true);
+                    case TAGS_AND_NAMES.RAILGUN:
+                        TryApplyingWeapon(WEAPON_TYPE.RAILGUN, true);
                         break;
-                    case "Missile":
-                        TryApplyingWeapon(WeaponType.Straight_Line_Missile, true);
+                    case TAGS_AND_NAMES.MISSILE:
+                        TryApplyingWeapon(WEAPON_TYPE.MISSILE, true);
                         break;
-                    case "Bomb":
-                        TryApplyingWeapon(WeaponType.Bombs, true);
+                    case TAGS_AND_NAMES.BOMB:
+                        TryApplyingWeapon(WEAPON_TYPE.BOMBS, true);
                         break;
                 }
             }
 
-            if (hit.collider.tag == "RightWeapon")
+            if (hit.collider.tag == TAGS_AND_NAMES.RIGHT_WEAPON_SLOT)
             {
                 switch (draggedWeapon.name)
                 {
-                    case "Railgun":
-                        TryApplyingWeapon(WeaponType.Railgun, false);
+                    case TAGS_AND_NAMES.RAILGUN:
+                        TryApplyingWeapon(WEAPON_TYPE.RAILGUN, false);
                         break;
-                    case "Missile":
-                        TryApplyingWeapon(WeaponType.Straight_Line_Missile, false);
+                    case TAGS_AND_NAMES.MISSILE:
+                        TryApplyingWeapon(WEAPON_TYPE.MISSILE, false);
                         break;
-                    case "Bomb":
-                        TryApplyingWeapon(WeaponType.Bombs, false);
+                    case TAGS_AND_NAMES.BOMB:
+                        TryApplyingWeapon(WEAPON_TYPE.BOMBS, false);
                         break;
                 }
             }
         }
         else
         {
-            draggedWeapon.position = weaponStartPosition;
-            ResetDragged();
+            ReturnToOrigin();
+            ResetDragging();
         }
     }
 
-    void TryApplyingWeapon(WeaponType weapon, bool isLeftWeapon)
+    void TryApplyingWeapon(WEAPON_TYPE weapon, bool isLeftWeapon)
     {
         if (isLeftWeapon)
         {
@@ -123,10 +122,25 @@ public class DragDropWeapon : MonoBehaviour
                 draggedWeapon.position = rightWeaponSlot.position;
         }
 
-        ResetDragged();
+        ResetDragging();
     }
 
-    void ResetDragged()
+    public void ActivateDragging()
+    {
+        isDragging = true;
+    }
+
+    public void DeactivateDragging()
+    {
+        isDragging = false;
+    }
+
+    public void ReturnToOrigin()
+    {
+        draggedWeapon.position = weaponStartPosition;
+    }
+
+    public void ResetDragging()
     {
         draggedWeapon = null;
         draggedWeaponRB.velocity = Vector2.zero;
