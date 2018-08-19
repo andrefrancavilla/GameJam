@@ -10,6 +10,8 @@ public class EnterOperationsBase : MonoBehaviour
 
     public float animDuration = 1.0f;
 
+    bool collided;
+
     IEnumerator TransitionToBase()
     {
         transitionToBase.SetTrigger(STRINGS.TRIGGER_FADE_TO_OPERATIONS_BASE);
@@ -17,11 +19,15 @@ public class EnterOperationsBase : MonoBehaviour
 
         yield return new WaitForSeconds(animDuration);
         operationsBase.SetActive(true);
+        collided = false;
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == STRINGS.PLAYER)
+        {
             StartCoroutine(TransitionToBase());
+            collided = true;
+        }
     }
 }
