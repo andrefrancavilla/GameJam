@@ -121,6 +121,9 @@ MonoBehaviour:
   projectileSpeed: 16
   tBeforeDestruction: 3
   damage: 0
+  isExplosive: 0
+  explosion: {fileID: 0}
+  isEnemyProjectile: 0
 --- !u!212 &212321731295324162
 SpriteRenderer:
   m_ObjectHideFlags: 1
