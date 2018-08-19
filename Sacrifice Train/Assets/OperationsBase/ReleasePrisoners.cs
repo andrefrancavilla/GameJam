@@ -16,7 +16,7 @@ public class ReleasePrisoners : MonoBehaviour
 
     // makes it so NOT all prisoner positions and movement is exactly alike
     public float spawnPointMaxVarietyX = 6.0f;
-    public float spawnPointMaxVarietyY = 3.0f;
+    public float spawnPointMaxVarietyY = 2.5f;
 
     bool isCoroutineRunning = false;
 
@@ -33,7 +33,7 @@ public class ReleasePrisoners : MonoBehaviour
     IEnumerator Release()
     {
         isCoroutineRunning = true;
-        for (int i = 0; i < 10; i++) //player.prisonersSaved
+        for (int i = 0; i < player.prisonersSaved; i++)
         {
             var spawnPointVariety = new Vector2(
                 Random.Range(-spawnPointMaxVarietyX, spawnPointMaxVarietyX), // x coordinate variance

@@ -21,6 +21,10 @@ public class EnterOperationsBase : MonoBehaviour
         transitionToBase.SetTrigger(STRINGS.TRIGGER_FADE_TO_WHITE);
         yield return new WaitForSeconds(animDuration);
 
+        var sprRen = gameObject.GetComponent<SpriteRenderer>();
+        var newAlpha = new Color(sprRen.color.r, sprRen.color.g, sprRen.color.b, 0);
+        sprRen.color = newAlpha;
+
         heavenSky.SetActive(true);
         hangar.SetActive(true);
         operationsBase.SetActive(true);

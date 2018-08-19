@@ -55,10 +55,12 @@ public class ExitOperationsBase : MonoBehaviour
             {
                 operationsBaseCanvases[i].SetAlpha(0.0f);
             }
-
             yield return new WaitForSeconds(animDuration);
 
-            Debug.Log("code is ran");
+            var sprRen = wayToHeaven.GetComponent<SpriteRenderer>();
+            var newAlpha = new Color(sprRen.color.r, sprRen.color.g, sprRen.color.b, 1);
+            sprRen.color = newAlpha;
+            wayToHeaven.SetActive(true);
 
             var temp = playerController.GetComponentsInChildren<SpriteRenderer>();
             for (int i = 0; i < temp.Length; i++)
@@ -69,7 +71,6 @@ public class ExitOperationsBase : MonoBehaviour
             transitionFromBase.SetTrigger(STRINGS.TRIGGER_FADE_OUT_OF_WHITE);
             yield return new WaitForSeconds(animDuration);
 
-            wayToHeaven.SetActive(true);
             weaponScript.EnableFire();
             playerController.ToggleInTheClouds();
             operationsBase.SetActive(false);

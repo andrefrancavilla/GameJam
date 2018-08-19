@@ -8,11 +8,11 @@ public class Prisoner : MonoBehaviour
     public Rigidbody2D rb;
     bool isRunning = false;
 
-    const float RUN_SPEED = 375.0f;
+    const float RUN_SPEED = 450.0f;
     const float RUN_DISTANCE = 500.0f;
-    const float RUN_MAX_DIRECTION_VARIETY = 0.15f;
+    const float RUN_MAX_DIRECTION_VARIETY = 0.1f;
 
-    const float DOWNWARDS_ADJUSTMENT = 0.2f;
+    const float DOWNWARDS_ADJUSTMENT = 0.225f;
 
     float distanceCovered;
 
