@@ -48,6 +48,7 @@ public class HenchmanCharacter : MonoBehaviour {
         movementVector = Vector2.zero;
         currentHealth = maxHealth;
         aimDummy = new GameObject();
+        aimDummy.transform.parent = transform;
     }
 
     // Update is called once per frame
@@ -60,6 +61,10 @@ public class HenchmanCharacter : MonoBehaviour {
         if(currentHealth<0)
         {
             henchmenAI.DestroyHenchman(gameObject, wagonNo);
+            if(targetWeapon)
+            {
+                targetWeapon.IsInUse = false;
+            }
             Destroy(gameObject);
         }
     }
@@ -108,8 +113,14 @@ public class HenchmanCharacter : MonoBehaviour {
             Debug.Log((transform.position - target).magnitude);
             yield return null;
         }
-        //Fire weapon
         movementVector = Vector2.zero;
+        //Fire weapon
+        while (myState == HenchmenAI.HenchmenState.FireWeapon)
+        {
+            yield return null;
+        }
+        targetWeapon.IsInUse = false;
+        targetWeapon = null;
         yield return null;
     }
     IEnumerator FireMachineGun()
@@ -144,6 +155,8 @@ public class HenchmanCharacter : MonoBehaviour {
         }
         if (myState == HenchmenAI.HenchmenState.RepairWeapon)
             myState = HenchmenAI.HenchmenState.Idle;
+        targetWeapon.IsInUse = false;
+        targetWeapon = null;
         yield return null;
     }
     IEnumerator RepairWagon()
