@@ -57,8 +57,8 @@ public class PestilenceAI : MonoBehaviour {
 	}
     void ChangeState()
     {
-        pState = PestilenceState.ToxicCloud;
-        //pState = (PestilenceState)Random.Range(0, 5);
+        //pState = PestilenceState.ToxicCloud;
+        pState = (PestilenceState)Random.Range(0, 5);
     }
     void DoAction()
     {
