@@ -64,21 +64,17 @@ public class WagonManager : MonoBehaviour
     {
         switch (c.gameObject.tag)
         {
-            case "Railgun":
+            case STRINGS.TAG_RAILGUN:
                 TakeDmg(WEAPON_DMG.RAILGUN_DMG);
                 break;
-            case "Missile":
+            case STRINGS.TAG_MISSILE:
                 TakeDmg(WEAPON_DMG.MISSILE_DMG);
                 break;
-            case "Bomb":
+            case STRINGS.TAG_BOMB:
                 TakeDmg(WEAPON_DMG.BOMB_DMG);
                 break;
-            case "Snowball":
+            case STRINGS.TAG_SNOWBALL:
                 TakeDmg(WEAPON_DMG.SNOWBALL_DMG);
-                break;
-            default:
-                if (c.gameObject.tag != null && c.gameObject.tag.Length > 0)
-                    Debug.Log("Tag is incorrectly spelled!");
                 break;
         }
     }

@@ -7,6 +7,7 @@ public struct STRINGS
     public const string TAG_RAILGUN = "Railgun";
     public const string TAG_MISSILE = "Missile";
     public const string TAG_BOMB = "Bomb";
+    public const string TAG_SNOWBALL = "Snowball";
 
     public const string TAG_WEAPON_SLOT = "WeaponSlot";
     public const string NAME_LEFT_WEAPON_SLOT = "LeftWeaponSlot";
