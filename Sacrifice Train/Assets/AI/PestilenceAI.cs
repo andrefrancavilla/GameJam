@@ -21,6 +21,7 @@ public class PestilenceAI : MonoBehaviour {
 
 
     enum PestilenceState { Idle, AnimateDead, Beam, ToxicCloud }
+    [SerializeField]
     PestilenceState pState = PestilenceState.Idle;
     [SerializeField]
     float maxCooldownTime = 10.0f;
@@ -58,7 +59,7 @@ public class PestilenceAI : MonoBehaviour {
     void ChangeState()
     {
         pState = (PestilenceState)Random.Range(0, 5);
-        pState = PestilenceState.Beam;
+        pState = PestilenceState.AnimateDead;
 
     }
     void DoAction()
