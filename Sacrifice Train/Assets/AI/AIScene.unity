@@ -113,6 +113,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &20717301
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4477893426003232, guid: db96f729bbaf05345948f14c79d65ca0, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477893426003232, guid: db96f729bbaf05345948f14c79d65ca0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.48331118
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477893426003232, guid: db96f729bbaf05345948f14c79d65ca0, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477893426003232, guid: db96f729bbaf05345948f14c79d65ca0, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477893426003232, guid: db96f729bbaf05345948f14c79d65ca0, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477893426003232, guid: db96f729bbaf05345948f14c79d65ca0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477893426003232, guid: db96f729bbaf05345948f14c79d65ca0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4477893426003232, guid: db96f729bbaf05345948f14c79d65ca0, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1802619932625750, guid: db96f729bbaf05345948f14c79d65ca0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: db96f729bbaf05345948f14c79d65ca0, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &606851916
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,6 +212,9 @@ MonoBehaviour:
   catapultAnimator: {fileID: 0}
   cow: {fileID: 0}
   cowSpawn: {fileID: 0}
+  healthBar: {fileID: 0}
+  barPosition: {fileID: 0}
+  tHpBarIsVisible: 0
 --- !u!212 &606851919
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -432,6 +481,52 @@ MonoBehaviour:
   wagonNumber: 0
   wagonWeapons:
   - {fileID: 606851918}
+--- !u!1001 &1724907916
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4862961939801312, guid: abbbba0b36e14a7479a576f5b85b4937, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 5.7520857
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862961939801312, guid: abbbba0b36e14a7479a576f5b85b4937, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.1929442
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862961939801312, guid: abbbba0b36e14a7479a576f5b85b4937, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.739406
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862961939801312, guid: abbbba0b36e14a7479a576f5b85b4937, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862961939801312, guid: abbbba0b36e14a7479a576f5b85b4937, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862961939801312, guid: abbbba0b36e14a7479a576f5b85b4937, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862961939801312, guid: abbbba0b36e14a7479a576f5b85b4937, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862961939801312, guid: abbbba0b36e14a7479a576f5b85b4937, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1263531332295488, guid: abbbba0b36e14a7479a576f5b85b4937, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: abbbba0b36e14a7479a576f5b85b4937, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1778516941 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1818170615491072, guid: f899c4516d2897b4dae0306b18fd2604,
@@ -468,6 +563,7 @@ MonoBehaviour:
   actionCooldown: 10
   wagonManagerList:
   - {fileID: 1704063217}
+  playerController: {fileID: 0}
 --- !u!4 &1784643600
 Transform:
   m_ObjectHideFlags: 0
@@ -604,15 +700,9 @@ Prefab:
       objectReference: {fileID: 877394757}
     - target: {fileID: 114146215516094338, guid: 85768703a3fabdc4882d0df5d5773160,
         type: 2}
-      propertyPath: henchmenCharacter
+      propertyPath: wagonManagerList.Array.data[0]
       value: 
-      objectReference: {fileID: 1376627158372766, guid: 597a1d6b62694af4e8a90b27bf97d44b,
-        type: 2}
-    - target: {fileID: 114146215516094338, guid: 85768703a3fabdc4882d0df5d5773160,
-        type: 2}
-      propertyPath: undeadAnimatedPerAction
-      value: 3
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1704063217}
     - target: {fileID: 114146215516094338, guid: 85768703a3fabdc4882d0df5d5773160,
         type: 2}
       propertyPath: playerCharacter
@@ -623,15 +713,9 @@ Prefab:
       propertyPath: henchmenAI
       value: 
       objectReference: {fileID: 1784643599}
-    - target: {fileID: 114146215516094338, guid: 85768703a3fabdc4882d0df5d5773160,
-        type: 2}
-      propertyPath: maxUndead
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114146215516094338, guid: 85768703a3fabdc4882d0df5d5773160,
-        type: 2}
-      propertyPath: maxHenchmen
-      value: 3
+    - target: {fileID: 1903958384941792, guid: 85768703a3fabdc4882d0df5d5773160, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85768703a3fabdc4882d0df5d5773160, type: 2}
@@ -645,7 +729,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4576103240415980, guid: f899c4516d2897b4dae0306b18fd2604, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4576103240415980, guid: f899c4516d2897b4dae0306b18fd2604, type: 2}
       propertyPath: m_LocalPosition.y

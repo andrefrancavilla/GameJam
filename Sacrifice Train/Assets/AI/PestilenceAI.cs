@@ -7,7 +7,8 @@ public class PestilenceAI : MonoBehaviour {
     //Need to be managed
     [SerializeField]
     GameObject[] spawnPoints;
-    float[] carriageHealth;
+    [SerializeField]
+    WagonManager[] wagonManagerList;
     float lowestCarriageHealth;
     int lowestCarriageHealthIndex=0;
     float playerHealth;
@@ -29,6 +30,10 @@ public class PestilenceAI : MonoBehaviour {
     [SerializeField]
     int maxHenchmen = 20;
     int currentHenchmenCount = 0;
+    [SerializeField]
+    GameObject beam;
+    [SerializeField]
+    GameObject toxicCloud;
    
 	// Use this for initialization
 	void Start () {
@@ -36,7 +41,6 @@ public class PestilenceAI : MonoBehaviour {
 	}
     private void Awake()
     {
-        carriageHealth = new float[] { 0 };
     }
 
     // Update is called once per frame
@@ -53,7 +57,7 @@ public class PestilenceAI : MonoBehaviour {
 	}
     void ChangeState()
     {
-        pState = PestilenceState.AnimateDead;
+        pState = PestilenceState.ToxicCloud;
         //pState = (PestilenceState)Random.Range(0, 5);
     }
     void DoAction()
@@ -66,8 +70,10 @@ public class PestilenceAI : MonoBehaviour {
                 StartCoroutine(ActionAnimateDead());
                 break;
             case PestilenceState.Beam:
+                StartCoroutine(ActionFireBeam());
                 break;
             case PestilenceState.ToxicCloud:
+                ActionToxicCloud();
                 break;
             default:
                 break;
@@ -105,27 +111,67 @@ public class PestilenceAI : MonoBehaviour {
         yield return null;
     }
    
-    void ActionBeam()
+   IEnumerator ActionFireBeam()
     {
         //Locate player
+        Vector3 target = playerCharacter.transform.position;
+        float multiplier = Random.Range(-1f, 1f);
+        if (multiplier <= 0)
+        {
+            multiplier = -1;
+        }
+        else
+        {
+            multiplier = 1;
+        }
+        Vector3 startPoint = target + new Vector3(multiplier * 10, 0);
+        GameObject beamInstance = Instantiate(beam, transform.position, Quaternion.identity);
+        startPoint.z = 0;
+        beamInstance.transform.right = (startPoint - transform.position);
+        Vector3 beamStartPoint = (startPoint - transform.position);
+        float beamDuration = 4.0f;
+        float beamTimer = 0f;
+        while(beamTimer<beamDuration)
+        {
+            beamTimer += Time.deltaTime;
+            Vector3 endPoint = playerCharacter.transform.position;
+            beamStartPoint += (endPoint - beamStartPoint).normalized * 0.05f;
+            beamInstance.transform.right = beamStartPoint;
+            yield return null;
+        }
+        Destroy(beamInstance);
         //Fire
         //Set state to Idle
+        pState = PestilenceState.Idle;
+        yield return null;
     }
     void ActionToxicCloud()
     {
+        int wagonNo = Random.Range(0, wagonManagerList.Length);
+        Instantiate(toxicCloud, wagonManagerList[wagonNo].transform.position + new Vector3(0, Random.Range(0f,40f)), Quaternion.identity);
         //Choose location (maybe check if its free of clouds)
         //Spawn cloud
         //Set state to Idle
+        pState = PestilenceState.Idle;
+    }
+    float GetTrainHealth()
+    {
+        float tHealth = 0.0f;
+        for (int i = 0; i < wagonManagerList.Length; i++)
+        {
+            tHealth += wagonManagerList[i].Health;
+        }
+        return tHealth;
     }
     void FindMostDamagedCarriage()
     {
         float currentMinHealth = float.MaxValue;
         int currentMinIndex = 0;
-        for (int i = 0; i < carriageHealth.Length; i++)
+        for (int i = 0; i < wagonManagerList.Length; i++)
         {
-            if (carriageHealth[i] < currentMinHealth)
+            if (wagonManagerList[i].Health < currentMinHealth)
             {
-                currentMinHealth = carriageHealth[i];
+                currentMinHealth = wagonManagerList[i].Health;
                 currentMinIndex = i;
             }
         }
