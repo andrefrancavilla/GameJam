@@ -37,15 +37,18 @@ public class ProjectileScript : MonoBehaviour {
                     collision.gameObject.GetComponent<WagonWeapon>().weaponHP -= damage;
                 if (collision.gameObject.tag == STRINGS.ENEMY)
                     collision.gameObject.GetComponent<HenchmanCharacter>().Damage(damage);
+                Destroy(gameObject);
+
             }
             else
             {
                 if(collision.gameObject.tag == STRINGS.PLAYER)
                     collision.gameObject.GetComponent<PlayerController>().DamagePlayer(damage);
+                Destroy(gameObject);
+
             }
         }
         else
             Instantiate(explosion, transform.position, transform.rotation);
-        Destroy(gameObject);
     }
 }

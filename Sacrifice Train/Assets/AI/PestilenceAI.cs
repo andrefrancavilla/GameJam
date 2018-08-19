@@ -161,7 +161,7 @@ public class PestilenceAI : MonoBehaviour {
         float tHealth = 0.0f;
         for (int i = 0; i < wagonManagerList.Length; i++)
         {
-            tHealth += wagonManagerList[i].Health;
+            tHealth += wagonManagerList[i].health;
         }
         return tHealth;
     }
@@ -171,9 +171,9 @@ public class PestilenceAI : MonoBehaviour {
         int currentMinIndex = 0;
         for (int i = 0; i < wagonManagerList.Length; i++)
         {
-            if (wagonManagerList[i].Health < currentMinHealth)
+            if (wagonManagerList[i].health < currentMinHealth)
             {
-                currentMinHealth = wagonManagerList[i].Health;
+                currentMinHealth = wagonManagerList[i].health;
                 currentMinIndex = i;
             }
         }

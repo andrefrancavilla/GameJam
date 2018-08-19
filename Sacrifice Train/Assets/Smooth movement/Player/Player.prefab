@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4806267815911954}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Right_Spawnpos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4585619887787652}
   - component: {fileID: 212220055435366114}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4111071569651186}
   - component: {fileID: 212618188998537092}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4821092995658662}
   - component: {fileID: 212723540314450414}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Turret (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4547723924280470}
   - component: {fileID: 212606930014729760}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Turret (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4118014806485284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4488022803728380}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bomb_Spawnpos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4763086448463230}
   - component: {fileID: 212714527646109504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Turret (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 61620775738276814}
   - component: {fileID: 114967312077812586}
   - component: {fileID: 114546878351149646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 4613561505414294}
   - component: {fileID: 198319479851464174}
   - component: {fileID: 199676118707704856}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4606644007532314}
   - component: {fileID: 212458976238513706}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4759004549747044}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left_Spawnpos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,6 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ddbbd810d5cbf49a5cf835e5a5d662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prisonersSaved: 0
+  totalPrisonersSaved: 0
   maxHP: 100
   HP: 100
   moveSpeed: 4
@@ -457,7 +459,6 @@ MonoBehaviour:
   deltaTimeToDecellerate: 0.033
   controlResponsiveness: 0.033
   maxAmountOfPrisoners: 20
-  prisonersSaved: 0
 --- !u!114 &114967312077812586
 MonoBehaviour:
   m_ObjectHideFlags: 1
