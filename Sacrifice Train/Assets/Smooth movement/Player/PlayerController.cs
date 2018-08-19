@@ -48,11 +48,16 @@ public class PlayerController : MonoBehaviour {
         HP -= damage;
     }
 
-    bool RegisterNewPrisoners()
+    public bool RegisterNewPrisoners()
     {
         if (prisonersSaved >= maxAmountOfPrisoners)
             return false;
         prisonersSaved++;
         return true;
+    }
+
+    public void ResetPrisonerCount()
+    {
+        prisonersSaved = 0;
     }
 }
