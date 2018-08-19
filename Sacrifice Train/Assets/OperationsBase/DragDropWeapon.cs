@@ -1,6 +1,7 @@
-﻿
-
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 
 public class DragDropWeapon : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class DragDropWeapon : MonoBehaviour
     public bool IsChosen { get; private set; } = false;
 
     Vector3 weaponStartPosition;
-    const float SPEED_MODIFIER = 60000.0f;
+    const float SPEED_MODIFIER = 0.175f;
 
     public Transform leftWeaponSlot;
     public Transform rightWeaponSlot;
@@ -20,22 +21,23 @@ public class DragDropWeapon : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) TryToDrag();
-        if (IsDragging && Input.GetMouseButtonUp(0)) ReleaseDragged();
         if (IsDragging) FollowMouse();
+        if (IsDragging && Input.GetMouseButtonUp(0)) ReleaseDragged();
     }
 
     void TryToDrag()
     {
-        var hits = Physics2D.RaycastAll(
-            Camera.main.ScreenToWorldPoint(Input.mousePosition), 
-            Vector2.zero);
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+        pointerData.position = Input.mousePosition;
 
-        int len = hits.Length;
-        for (int i = 0; i < len; i++)
+        List<RaycastResult> hits = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, hits);
+
+        for (int i = 0; i < hits.Count; i++)
         {
-            if (hits[i].collider?.tag == STRINGS.PICKABLE_WEAPON)
+            if (hits[i].gameObject?.tag == STRINGS.PICKABLE_WEAPON)
             {
-                draggedWeapon = hits[i].collider.transform;
+                draggedWeapon = hits[i].gameObject.transform;
                 draggedWeaponRB = draggedWeapon.GetComponent<Rigidbody2D>();
                 weaponStartPosition = draggedWeapon.position;
                 ActivateDragging();
@@ -47,30 +49,37 @@ public class DragDropWeapon : MonoBehaviour
 
     void FollowMouse()
     {
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var diff = (mousePos - draggedWeapon.position) * SPEED_MODIFIER * Time.deltaTime;
+        //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var diff = (Input.mousePosition - draggedWeapon.localPosition);
+        float speedMod = SPEED_MODIFIER * Time.deltaTime;
 
-        draggedWeaponRB.velocity = new Vector2(diff.x, diff.y);
+        draggedWeaponRB.velocity = new Vector2(diff.x * speedMod, diff.y * speedMod);
     }
 
     void ReleaseDragged()
     {
         DeactivateDragging();
-        var hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-        RaycastHit2D hit = new RaycastHit2D(); int len = hits.Length;
-        for (int i = 0; i < len; i++)
+        PointerEventData pointerData = new PointerEventData(EventSystem.current);
+        pointerData.position = Input.mousePosition;
+
+        List<RaycastResult> hits = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, hits);
+
+        GameObject hit = null;
+
+        for (int i = 0; i < hits.Count; i++)
         {
-            if (hits[i].collider.tag == STRINGS.TAG_WEAPON_SLOT)
+            if (hits[i].gameObject.tag == STRINGS.TAG_WEAPON_SLOT)
             {
-                hit = hits[i];
+                hit = hits[i].gameObject;
                 break;
             }
         }
         
-        if (hit.collider != null)
+        if (hit != null)
         {
-            if (hit.collider.name == STRINGS.NAME_LEFT_WEAPON_SLOT)
+            if (hit.gameObject.name == STRINGS.NAME_LEFT_WEAPON_SLOT)
             {
                 switch (draggedWeapon.name)
                 {
@@ -86,7 +95,7 @@ public class DragDropWeapon : MonoBehaviour
                 }
             }
 
-            if (hit.collider.tag == STRINGS.NAME_RIGHT_WEAPON_SLOT)
+            if (hit.gameObject.tag == STRINGS.NAME_RIGHT_WEAPON_SLOT)
             {
                 switch (draggedWeapon.name)
                 {

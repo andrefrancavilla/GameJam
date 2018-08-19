@@ -8,9 +8,11 @@ public class Prisoner : MonoBehaviour
     public Rigidbody2D rb;
     bool isRunning = false;
 
-    const float RUN_SPEED = 50.0f;
+    const float RUN_SPEED = 375.0f;
     const float RUN_DISTANCE = 500.0f;
-    const float RUN_MAX_DIRECTION_VARIETY = 5.0f;
+    const float RUN_MAX_DIRECTION_VARIETY = 0.15f;
+
+    const float DOWNWARDS_ADJUSTMENT = 0.2f;
 
     float distanceCovered;
 
@@ -26,6 +28,6 @@ public class Prisoner : MonoBehaviour
         isRunning = true;
         rb.velocity = new Vector2(
             RUN_SPEED * Time.deltaTime,
-            Random.Range(-RUN_MAX_DIRECTION_VARIETY, RUN_MAX_DIRECTION_VARIETY));
+            Random.Range(-RUN_MAX_DIRECTION_VARIETY, RUN_MAX_DIRECTION_VARIETY) - DOWNWARDS_ADJUSTMENT);
     }
 }
