@@ -36,7 +36,11 @@ public class HenchmanCharacter : MonoBehaviour {
     WagonManager currentWagon;
 
     GameObject aimDummy;
-
+    int burstFireCount;
+    [SerializeField]
+    int burstFireNumber = 3;
+    [SerializeField]
+    float burstFireCooldownMultiplier = 10f;
 	// Use this for initialization
 	void Start () {
         StartCoroutine(MoveCharacter());
@@ -135,6 +139,12 @@ public class HenchmanCharacter : MonoBehaviour {
                 diff.Normalize();
                 aimDummy.transform.right = diff;
                 Instantiate(projectile, transform.position + diff*3, aimDummy.transform.rotation);
+                burstFireCount++;
+                if(burstFireCount>=3)
+                {
+                    burstFireCount = 0;
+                    currentFireTime = fireRate * burstFireCooldownMultiplier;
+                }
             }
             yield return null;
         }
