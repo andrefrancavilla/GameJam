@@ -159,8 +159,12 @@ public class WeaponScript : MonoBehaviour {
         return true;
     }
 
-    public void ToggleFire()
+    public void EnableFire()
     {
-        CanFire = !CanFire;
+        CanFire = true;
+    }
+    public void DisableFire()
+    {
+        CanFire = false;
     }
 }
