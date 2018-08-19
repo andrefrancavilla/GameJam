@@ -219,6 +219,7 @@ public class HenchmenAI : MonoBehaviour {
             henchmenList.Remove(henchmenListByWagon[wagonNo][i].GetComponent<HenchmanCharacter>());
             GameObject.Destroy(henchmenListByWagon[wagonNo][i]);
         }
+        //henchmenListByWagon.Remove()
         henchmenListByWagon[wagonNo].Clear();
         
     }
