@@ -35,6 +35,8 @@ public class ProjectileScript : MonoBehaviour {
             {
                 if (collision.gameObject.tag == STRINGS.WAGON_WEAPON)
                     collision.gameObject.GetComponent<WagonWeapon>().weaponHP -= damage;
+                if (collision.gameObject.tag == STRINGS.ENEMY)
+                    collision.gameObject.GetComponent<HenchmanCharacter>().Damage(damage);
             }
             else
             {
