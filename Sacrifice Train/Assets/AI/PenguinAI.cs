@@ -43,7 +43,10 @@ public class PenguinAI : MonoBehaviour {
             debugToggleTargeting = false;
         }
         primaryFireT -= Time.deltaTime;
-
+        if(Input.GetButtonDown("AutoFire"))
+        {
+            TogglesFiringSnowballs();
+        }
     }
     public void TogglesFiringSnowballs()
     {
