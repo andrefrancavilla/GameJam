@@ -17,8 +17,8 @@ public class WagonRoofManager : MonoBehaviour
     const float FADE_SECONDS = 3.0f;
     #endregion
 
-    [HideInInspector]
-    public float Health { get; private set; } = MAX_HEALTH;
+    
+    public float Health = MAX_HEALTH;
 
     [HideInInspector]
     public int RepairWorkers { get; private set; } = 0;
@@ -46,7 +46,7 @@ public class WagonRoofManager : MonoBehaviour
         if (Health - dmg < MIN_HEALTH)
         {
             Health = MIN_HEALTH;
-            FadeRoofOut();
+            isFading = true;
         }
         else
             Health -= dmg;
@@ -84,7 +84,7 @@ public class WagonRoofManager : MonoBehaviour
                     break;
                 default:
                     if (c.gameObject.tag != null && c.gameObject.tag.Length > 0)
-                        Debug.Log("Tag is incorrectly spelled!");
+                        Debug.Log("Tag is incorrectly spelled!" + c.gameObject.tag);
                     break;
             }
         }
