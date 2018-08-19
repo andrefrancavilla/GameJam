@@ -12,7 +12,7 @@ public class DragDropWeapon : MonoBehaviour
     public bool IsChosen { get; private set; } = false;
 
     Vector3 weaponStartPosition;
-    const float SPEED_MODIFIER = 600.0f;
+    const float SPEED_MODIFIER = 60000.0f;
 
     public Transform leftWeaponSlot;
     public Transform rightWeaponSlot;
@@ -33,6 +33,7 @@ public class DragDropWeapon : MonoBehaviour
         int len = hits.Length;
         for (int i = 0; i < len; i++)
         {
+            Debug.Log(hits[i].collider?.name);
             if (hits[i].collider?.tag == STRINGS.PICKABLE_WEAPON)
             {
                 draggedWeapon = hits[i].collider.transform;

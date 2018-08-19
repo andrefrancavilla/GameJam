@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ExitOperationsBase : MonoBehaviour
 {
+    public PlayerController playerController;
+    public GameObject heavenSky;
     public GameObject operationsBase;
     public WeaponScript weaponScript;
     public Animator transitionFromBase;
@@ -42,14 +44,16 @@ public class ExitOperationsBase : MonoBehaviour
                 }
             }
 
-            transitionFromBase.SetTrigger(STRINGS.TRIGGER_FADE_FROM_OPERATIONS_BASE);
+            transitionFromBase.SetTrigger(STRINGS.TRIGGER_FADE_TO_WHITE);
+            heavenSky.SetActive(false);
+            operationsBase.SetActive(false);
+            yield return new WaitForSeconds(animDuration); 
+
+            transitionFromBase.SetTrigger(STRINGS.TRIGGER_FADE_OUT_OF_WHITE);
             yield return new WaitForSeconds(animDuration);
 
-            operationsBase.SetActive(false);
-
-            Debug.Log(weaponScript.CanFire);
-            weaponScript.ToggleFire();
-            Debug.Log(weaponScript.CanFire);
+            weaponScript.EnableFire();
+            playerController.ToggleInTheClouds();
         }
     }
 }

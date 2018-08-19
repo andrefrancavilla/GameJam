@@ -4,30 +4,38 @@ using UnityEngine;
 
 public class EnterOperationsBase : MonoBehaviour
 {
+    public PlayerController playerController;
+    public GameObject heavenSky;
     public GameObject operationsBase;
     public WeaponScript weaponScript;
     public Animator transitionToBase;
 
     public float animDuration = 1.0f;
 
-    bool collided;
+    bool isInCollision;
 
     IEnumerator TransitionToBase()
     {
-        transitionToBase.SetTrigger(STRINGS.TRIGGER_FADE_TO_OPERATIONS_BASE);
-        weaponScript.ToggleFire();
-
+        playerController.ToggleInTheClouds();
+        weaponScript.DisableFire();
+        transitionToBase.SetTrigger(STRINGS.TRIGGER_FADE_TO_WHITE);
         yield return new WaitForSeconds(animDuration);
+
+        heavenSky.SetActive(true);
         operationsBase.SetActive(true);
-        collided = false;
+
+        transitionToBase.SetTrigger(STRINGS.TRIGGER_FADE_OUT_OF_WHITE);
+        yield return new WaitForSeconds(animDuration);
+
+        isInCollision = false;
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == STRINGS.PLAYER)
+        if(!isInCollision && other.tag == STRINGS.PLAYER)
         {
             StartCoroutine(TransitionToBase());
-            collided = true;
+            isInCollision = true;
         }
     }
 }

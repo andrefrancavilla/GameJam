@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public float controlResponsiveness; //The lower the value, the less responsive the controls are. Hence, the movement is more floaty the more you lower the value.
     public int maxAmountOfPrisoners;
 
+    public Transform backToBattleTeleportLocation; // location where player should be teleported back to
+
     Vector2 inputAxis; //Input axis is stored here
     Rigidbody2D ShipRB;
     float tMoving;
@@ -69,5 +71,7 @@ public class PlayerController : MonoBehaviour
     public void ToggleInTheClouds()
     {
         invulnerability = !invulnerability;
+
+        if(invulnerability) transform.position = backToBattleTeleportLocation.position;
     }
 }
