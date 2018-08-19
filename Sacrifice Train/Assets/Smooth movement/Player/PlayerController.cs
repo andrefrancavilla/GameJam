@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour {
     public AnimationCurve accelerationBehaviourCurve;
     public float deltaTimeToDecellerate; //Lower the value, the more time it will take for the player to reach 0 velocity
     public float controlResponsiveness; //The lower the value, the less responsive the controls are. Hence, the movement is more floaty the more you lower the value.
+    public int maxAmountOfPrisoners;
+    [HideInInspector]
+    public int prisonersSaved;
 
     Vector2 inputAxis; //Input axis is stored here
     Rigidbody2D ShipRB;
@@ -43,5 +46,13 @@ public class PlayerController : MonoBehaviour {
     public void DamagePlayer(float damage)
     {
         HP -= damage;
+    }
+
+    bool RegisterNewPrisoners()
+    {
+        if (prisonersSaved >= maxAmountOfPrisoners)
+            return false;
+        prisonersSaved++;
+        return true;
     }
 }
