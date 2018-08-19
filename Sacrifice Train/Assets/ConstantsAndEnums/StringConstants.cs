@@ -20,7 +20,8 @@ public struct STRINGS
 
     public const string TRIGGER_DEATH = "Death";
     public const string TRIGGER_LAUNCH = "Launch";
-    public const string TRIGGER_OPERATIONS_BASE = "GoTransition";
+    public const string TRIGGER_FADE_TO_OPERATIONS_BASE = "In";
+    public const string TRIGGER_FADE_FROM_OPERATIONS_BASE = "Out";
     public const string TRIGGER_EMPTY_WINDOW = "GoEmptyWindow";
     public const string TRIGGER_PRISONER_RUN = "GoPrisonerRun";
 }

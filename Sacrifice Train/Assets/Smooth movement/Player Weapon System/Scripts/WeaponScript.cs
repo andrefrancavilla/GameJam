@@ -24,7 +24,7 @@ public class WeaponScript : MonoBehaviour {
     WEAPON_TYPE previousPrimaryWeapon;
     WEAPON_TYPE previousSecondaryWeapon;
 
-    bool canFire = true;
+    public bool CanFire { get; private set; } = true;
     
     void Update ()
     {
@@ -83,7 +83,7 @@ public class WeaponScript : MonoBehaviour {
         secondaryFireT += Time.deltaTime * secondaryWeaponFireRate;
 
         //Projectile handle
-        if(canFire)
+        if(CanFire)
         {
             if (Input.GetButton("Fire1") && primaryFireT >= 1)
             {
@@ -115,6 +115,6 @@ public class WeaponScript : MonoBehaviour {
 
     public void ToggleFire()
     {
-        canFire = !canFire;
+        CanFire = !CanFire;
     }
 }
