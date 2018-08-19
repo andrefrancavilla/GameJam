@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D ShipRB;
     float tMoving;
     float zRot;
+    bool invulnerability;
 
     private void Awake()
     {
@@ -48,7 +49,8 @@ public class PlayerController : MonoBehaviour
 
     public void DamagePlayer(float damage)
     {
-        HP -= damage;
+        if (!invulnerability)
+            HP -= damage;
     }
 
     public bool RegisterNewPrisoners()
@@ -62,5 +64,10 @@ public class PlayerController : MonoBehaviour
     public void ResetPrisonerCount()
     {
         prisonersSaved = 0;
+    }
+
+    public void ToggleInTheClouds()
+    {
+        invulnerability = !invulnerability;
     }
 }
