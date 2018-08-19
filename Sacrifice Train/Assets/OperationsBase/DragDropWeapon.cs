@@ -33,7 +33,6 @@ public class DragDropWeapon : MonoBehaviour
         int len = hits.Length;
         for (int i = 0; i < len; i++)
         {
-            Debug.Log(hits[i].collider?.name);
             if (hits[i].collider?.tag == STRINGS.PICKABLE_WEAPON)
             {
                 draggedWeapon = hits[i].collider.transform;
@@ -43,8 +42,6 @@ public class DragDropWeapon : MonoBehaviour
                 break;
             }
         }
-
-
         
     }
 

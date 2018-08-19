@@ -1,20 +1,21 @@
 fileFormatVersion: 2
-guid: 2391d4552e5f94b2fa6181c8110970bc
+guid: bbe5903407a2b4d48bec24ee6ec5fc24
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ship
-    21300002: Explosion
-    21300004: fire
-    21300006: Player_3
-    21300008: Player_4
-    21300010: Rocket
-    21300012: Player_6
-    21300014: Gun
-    21300016: Player_8
-    21300018: Bomb
-    21300020: Smoke
-    21300022: Turret
-    21300024: Cannon
+    21300000: Heaven_0
+    21300002: Heaven_1
+    21300004: Heaven_2
+    21300006: Heaven_3
+    21300008: Heaven_4
+    21300010: Heaven_5
+    21300012: Banner
+    21300014: Head1
+    21300016: Head2
+    21300018: Shoe
+    21300020: Hand
+    21300022: Body
+    21300024: Arm
+    21300026: LEg
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -139,13 +140,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ship
+      name: Heaven_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 288
-        width: 437
-        height: 213
+        x: 0
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,19 +154,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34217120502b0458aa171ba3972df85c
+      spriteID: 5da2e1de435d8410981d2fd98bde7b6c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Explosion
+      name: Heaven_1
       rect:
         serializedVersion: 2
-        x: 7
-        y: 137
-        width: 121
-        height: 151
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,39 +174,39 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72085403183d8405d97c7bc347b47c5a
+      spriteID: c9290902834bf4e808e608326fd0844f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fire
+      name: Heaven_2
       rect:
         serializedVersion: 2
-        x: 181
-        y: 197
-        width: 104
-        height: 66
-      alignment: 9
-      pivot: {x: 0.84003246, y: 0.45340797}
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 967e276a7bcf349b5a652dddf8c67a3f
+      spriteID: 18b0b7f2d36bf4785ba45f231d92e832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_3
+      name: Heaven_3
       rect:
         serializedVersion: 2
-        x: 209
+        x: 0
         y: 256
-        width: 9
-        height: 8
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,19 +214,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17a8938373fce4944903c4e01d6bc0b1
+      spriteID: 482854ad43f7f47bebe97236ed0fe9fb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_4
+      name: Heaven_4
       rect:
         serializedVersion: 2
-        x: 230
-        y: 260
-        width: 10
-        height: 6
+        x: 128
+        y: 256
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,167 +234,187 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c65589cd65ec4cb38666f442104ad2b
+      spriteID: 56b37c7ada26f4d6ca6ae183e55fec75
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rocket
+      name: Heaven_5
       rect:
         serializedVersion: 2
-        x: 308
-        y: 179
-        width: 204
-        height: 93
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca787ee80196429ebc390ac1e0553fb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Banner
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 129
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25fef0d2ef9c5442cbd4f4f6135a336a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Head1
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 149
+        width: 135
+        height: 105
       alignment: 9
-      pivot: {x: 0.45100987, y: 0.48346734}
+      pivot: {x: 0.49345717, y: 0.13536571}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 96f184a2fd67f4d8a99fcd39816095cf
+      spriteID: e6d5947b792554c4aa5d2424644cd265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_6
+      name: Head2
       rect:
         serializedVersion: 2
-        x: 229
-        y: 194
-        width: 5
-        height: 6
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbcda7ace32fd457897f858b8e8f373b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gun
-      rect:
-        serializedVersion: 2
-        x: 139
-        y: 83
-        width: 165
-        height: 78
+        x: 21
+        y: 3
+        width: 131
+        height: 116
       alignment: 9
-      pivot: {x: 0.2204477, y: 0.7365443}
+      pivot: {x: 0.45290345, y: 0.1897445}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba084df3d08e04936ab43f5896f2b176
+      spriteID: 2f884de7cb7c849db969244b2574bcd1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_8
+      name: Shoe
       rect:
         serializedVersion: 2
-        x: 315
-        y: 132
-        width: 5
-        height: 4
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 159
+        y: 11
+        width: 74
+        height: 36
+      alignment: 9
+      pivot: {x: 0.27972186, y: 0.69505}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f36a714d33b554b16a3a595e6c131637
+      spriteID: c1f26ff671a384ebd8b45ebddfa85062
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bomb
+      name: Hand
       rect:
         serializedVersion: 2
-        x: 364
-        y: 12
-        width: 133
-        height: 153
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 747403126485e414993bf22842f2deaa
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Smoke
-      rect:
-        serializedVersion: 2
-        x: 11
-        y: 4
-        width: 107
-        height: 118
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3eaae678a5393452a9f82bfb8c351d46
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Turret
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 17
-        width: 121
+        x: 245
+        y: 9
+        width: 50
         height: 39
       alignment: 9
-      pivot: {x: 0.5, y: 0.85481644}
+      pivot: {x: 0.44984496, y: 0.7700693}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d87c4be0c8c5042398fc2e0ddd626e20
+      spriteID: f1b10d6c3eb4b4034851e982d2f29ff8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cannon
+      name: Body
       rect:
         serializedVersion: 2
-        x: 308
-        y: 12
-        width: 33
-        height: 108
+        x: 214
+        y: 54
+        width: 105
+        height: 86
       alignment: 9
-      pivot: {x: 0.45340797, y: 0.10137916}
+      pivot: {x: 0.49165854, y: 0.15882474}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 816184bda8f0e4371a41647a010d7e09
+      spriteID: 70ac7a676f72a45b0bee0900efbcc678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arm
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 11
+        width: 69
+        height: 79
+      alignment: 9
+      pivot: {x: 0.43103337, y: 0.76730114}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a394169e863c47e9975faf05a5a0637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LEg
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 112
+        width: 77
+        height: 67
+      alignment: 9
+      pivot: {x: 0.31459582, y: 0.7022455}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32c3c6d54ff0f405cb41db3018bd54f0
       vertices: []
       indices: 
       edges: []
@@ -401,7 +422,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: fd87640c32ef545d8897a8fc6a4bbf5a
+    spriteID: b8aff0956663b41c19f6bbe856846b66
     vertices: []
     indices: 
     edges: []

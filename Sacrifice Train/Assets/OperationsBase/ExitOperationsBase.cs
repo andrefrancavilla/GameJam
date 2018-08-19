@@ -6,14 +6,16 @@ using UnityEngine.UI;
 public class ExitOperationsBase : MonoBehaviour
 {
     public PlayerController playerController;
-    public GameObject heavenSky;
-    public GameObject operationsBase;
     public WeaponScript weaponScript;
     public Animator transitionFromBase;
     public Button btn;
 
-    public ReleasePrisoners releasePrisoners;
+    public GameObject wayToHeaven;
+    public GameObject hangar;
+    public GameObject heavenSky;
+    public GameObject operationsBase;
 
+    public ReleasePrisoners releasePrisoners;
     public List<DragDropWeapon> dragDropWeapons;
 
     public float animDuration = 1.0f;
@@ -46,12 +48,20 @@ public class ExitOperationsBase : MonoBehaviour
 
             transitionFromBase.SetTrigger(STRINGS.TRIGGER_FADE_TO_WHITE);
             heavenSky.SetActive(false);
+            hangar.SetActive(false);
             operationsBase.SetActive(false);
-            yield return new WaitForSeconds(animDuration); 
+            yield return new WaitForSeconds(animDuration);
+
+            var temp = playerController.GetComponentsInChildren<SpriteRenderer>();
+            for (int i = 0; i < temp.Length; i++)
+            {
+                temp[i].enabled = false;
+            }
 
             transitionFromBase.SetTrigger(STRINGS.TRIGGER_FADE_OUT_OF_WHITE);
             yield return new WaitForSeconds(animDuration);
 
+            wayToHeaven.SetActive(true);
             weaponScript.EnableFire();
             playerController.ToggleInTheClouds();
         }

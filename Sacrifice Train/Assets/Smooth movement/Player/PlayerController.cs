@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     float tMoving;
     float zRot;
     bool invulnerability;
+    bool canMove = true;
 
     private void Awake()
     {
@@ -34,19 +35,22 @@ public class PlayerController : MonoBehaviour
     
     void Update ()
     {
-        //Movement
-        inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        if (inputAxis.magnitude != 0)
-            tMoving += Time.deltaTime;
-        else
+        if(canMove)
         {
-            tMoving = 0;
-            ShipRB.velocity = Vector2.Lerp(ShipRB.velocity, Vector2.zero, deltaTimeToDecellerate);
-        }
+            //Movement
+            inputAxis = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            if (inputAxis.magnitude != 0)
+                tMoving += Time.deltaTime;
+            else
+            {
+                tMoving = 0;
+                ShipRB.velocity = Vector2.Lerp(ShipRB.velocity, Vector2.zero, deltaTimeToDecellerate);
+            }
 
-        ShipRB.velocity = Vector2.Lerp(ShipRB.velocity, new Vector2(inputAxis.x * moveSpeed, inputAxis.y * moveSpeed * accelerationBehaviourCurve.Evaluate(tMoving)), controlResponsiveness);
-        zRot = Mathf.Lerp(zRot, 5 * -inputAxis.x, 0.033f);
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, zRot));
+            ShipRB.velocity = Vector2.Lerp(ShipRB.velocity, new Vector2(inputAxis.x * moveSpeed, inputAxis.y * moveSpeed * accelerationBehaviourCurve.Evaluate(tMoving)), controlResponsiveness);
+            zRot = Mathf.Lerp(zRot, 5 * -inputAxis.x, 0.033f);
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, zRot));
+        }
     }
 
     public void DamagePlayer(float damage)
@@ -71,7 +75,7 @@ public class PlayerController : MonoBehaviour
     public void ToggleInTheClouds()
     {
         invulnerability = !invulnerability;
-
         if(invulnerability) transform.position = backToBattleTeleportLocation.position;
+        canMove = !canMove;
     }
 }
