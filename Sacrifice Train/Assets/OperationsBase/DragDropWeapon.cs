@@ -20,9 +20,12 @@ public class DragDropWeapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) TryToDrag();
-        if (IsDragging) FollowMouse();
-        if (IsDragging && Input.GetMouseButtonUp(0)) ReleaseDragged();
+        if(!IsChosen)
+        {
+            if (Input.GetMouseButtonDown(0)) TryToDrag();
+            if (IsDragging) FollowMouse();
+            if (IsDragging && Input.GetMouseButtonUp(0)) ReleaseDragged();
+        }
     }
 
     void TryToDrag()
@@ -48,7 +51,6 @@ public class DragDropWeapon : MonoBehaviour
 
     void FollowMouse()
     {
-        //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var diff = (Input.mousePosition - Camera.main.WorldToScreenPoint(draggedWeapon.position));
         float speedMod = SPEED_MODIFIER * Time.deltaTime;
 
@@ -135,8 +137,6 @@ public class DragDropWeapon : MonoBehaviour
                 IsChosen = true;
             }
         }
-
-        ResetDragging();
     }
 
     public void ActivateDragging()
@@ -151,12 +151,12 @@ public class DragDropWeapon : MonoBehaviour
 
     public void ReturnToOrigin()
     {
-        draggedWeapon.position = weaponStartPosition;
+        if(draggedWeapon != null)
+            draggedWeapon.position = weaponStartPosition;
     }
 
     public void ResetDragging()
     {
-        draggedWeapon = null;
         draggedWeaponRB.velocity = Vector2.zero;
     }
 }

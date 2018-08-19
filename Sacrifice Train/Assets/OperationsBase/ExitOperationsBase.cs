@@ -20,9 +20,14 @@ public class ExitOperationsBase : MonoBehaviour
 
     public float animDuration = 1.0f;
 
+    bool isFading;
+    float currentAlpha = 1;
+
+    public CanvasRenderer[] operationsBaseCanvases;
+
     void Start()
     {
-        btn.onClick.AddListener(() => StartCoroutine(ReturnToBattle())); 
+        btn.onClick.AddListener(() => StartCoroutine(ReturnToBattle()));
     }
 
     // Update is called once per frame
@@ -30,7 +35,13 @@ public class ExitOperationsBase : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             StartCoroutine(ReturnToBattle());
-	}
+        if (isFading)
+        {
+            FadeRenderers();
+            currentAlpha -= Time.deltaTime / animDuration;
+            if (currentAlpha <= 0.0f) ResetFade();
+        }
+    }
 
     IEnumerator ReturnToBattle()
     {
@@ -50,11 +61,9 @@ public class ExitOperationsBase : MonoBehaviour
             heavenSky.SetActive(false);
             hangar.SetActive(false);
 
-            var operationsBaseCanvases = operationsBase.GetComponentsInChildren<CanvasRenderer>();
-            for (int i = 0; i < operationsBaseCanvases.Length; i++)
-            {
-                operationsBaseCanvases[i].SetAlpha(0.0f);
-            }
+            currentAlpha = 1.0f;
+            isFading = true;
+
             yield return new WaitForSeconds(animDuration);
 
             var sprRen = wayToHeaven.GetComponent<SpriteRenderer>();
@@ -75,5 +84,19 @@ public class ExitOperationsBase : MonoBehaviour
             playerController.ToggleInTheClouds();
             operationsBase.SetActive(false);
         }
+    }
+
+    void FadeRenderers()
+    {
+        for (int i = 0; i < operationsBaseCanvases.Length; i++)
+        {
+            operationsBaseCanvases[i].SetAlpha(currentAlpha);
+        }
+    }
+
+    void ResetFade()
+    {
+        isFading = false;
+        currentAlpha = 0.0f;
     }
 }
