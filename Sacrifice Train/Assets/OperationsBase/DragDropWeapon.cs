@@ -13,7 +13,7 @@ public class DragDropWeapon : MonoBehaviour
     public bool IsChosen { get; private set; } = false;
 
     Vector3 weaponStartPosition;
-    const float SPEED_MODIFIER = 0.175f;
+    const float SPEED_MODIFIER = 0.5f;
 
     public Transform leftWeaponSlot;
     public Transform rightWeaponSlot;
@@ -50,7 +50,7 @@ public class DragDropWeapon : MonoBehaviour
     void FollowMouse()
     {
         //var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        var diff = (Input.mousePosition - draggedWeapon.localPosition);
+        var diff = (Input.mousePosition - Camera.main.WorldToScreenPoint(draggedWeapon.position));
         float speedMod = SPEED_MODIFIER * Time.deltaTime;
 
         draggedWeaponRB.velocity = new Vector2(diff.x * speedMod, diff.y * speedMod);
