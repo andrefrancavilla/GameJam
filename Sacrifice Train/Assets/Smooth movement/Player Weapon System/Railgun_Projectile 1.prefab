@@ -123,7 +123,7 @@ MonoBehaviour:
   damage: 2
   isExplosive: 0
   explosion: {fileID: 0}
-  isEnemyProjectile: 1
+  isEnemyProjectile: 0
 --- !u!212 &212321731295324162
 SpriteRenderer:
   m_ObjectHideFlags: 1

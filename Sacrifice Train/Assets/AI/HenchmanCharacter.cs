@@ -7,8 +7,8 @@ public class HenchmanCharacter : MonoBehaviour {
     float maxHealth=30;
     [SerializeField]
     float currentHealth;
-    [SerializeField]
-    HenchmenAI.HenchmenState myState;
+    
+    public HenchmenAI.HenchmenState myState;
     HenchmenAI henchmenAI;
     [HideInInspector]
     public int wagonNo;
@@ -36,7 +36,11 @@ public class HenchmanCharacter : MonoBehaviour {
     WagonManager currentWagon;
 
     GameObject aimDummy;
-
+    int burstFireCount;
+    [SerializeField]
+    int burstFireNumber = 3;
+    [SerializeField]
+    float burstFireCooldownMultiplier = 10f;
 	// Use this for initialization
 	void Start () {
         StartCoroutine(MoveCharacter());
@@ -53,8 +57,9 @@ public class HenchmanCharacter : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        currentFireTime -= Time.deltaTime;
+
+    }
     public void Damage(float damage)
     {
         currentHealth -= damage;
@@ -127,7 +132,6 @@ public class HenchmanCharacter : MonoBehaviour {
     {
         while (myState == HenchmenAI.HenchmenState.FireMachineGuns)
         {
-            currentFireTime -= Time.deltaTime;
             if (currentFireTime <= 0.0f)
             {
                 currentFireTime = fireRate;
@@ -135,6 +139,12 @@ public class HenchmanCharacter : MonoBehaviour {
                 diff.Normalize();
                 aimDummy.transform.right = diff;
                 Instantiate(projectile, transform.position + diff*3, aimDummy.transform.rotation);
+                burstFireCount++;
+                if(burstFireCount>=burstFireNumber)
+                {
+                    burstFireCount = 0;
+                    currentFireTime = fireRate * burstFireCooldownMultiplier;
+                }
             }
             yield return null;
         }
