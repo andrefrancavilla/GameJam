@@ -5,6 +5,7 @@ using UnityEngine;
 public class HenchmanCharacter : MonoBehaviour {
     [SerializeField]
     float maxHealth=30;
+    [SerializeField]
     float currentHealth;
     [SerializeField]
     HenchmenAI.HenchmenState myState;
@@ -43,6 +44,7 @@ public class HenchmanCharacter : MonoBehaviour {
         henchmenAI = GameObject.Find("HenchmenManager").GetComponent<HenchmenAI>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         movementVector = Vector2.zero;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame

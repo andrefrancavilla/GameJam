@@ -57,8 +57,9 @@ public class PestilenceAI : MonoBehaviour {
 	}
     void ChangeState()
     {
-        //pState = PestilenceState.ToxicCloud;
         pState = (PestilenceState)Random.Range(0, 5);
+        pState = PestilenceState.Beam;
+
     }
     void DoAction()
     {
@@ -128,7 +129,7 @@ public class PestilenceAI : MonoBehaviour {
         GameObject beamInstance = Instantiate(beam, transform.position, Quaternion.identity);
         startPoint.z = 0;
         beamInstance.transform.right = (startPoint - transform.position);
-        Vector3 beamStartPoint = (startPoint - transform.position);
+        Vector3 beamStartPoint = startPoint;
         float beamDuration = 4.0f;
         float beamTimer = 0f;
         while(beamTimer<beamDuration)
@@ -136,7 +137,7 @@ public class PestilenceAI : MonoBehaviour {
             beamTimer += Time.deltaTime;
             Vector3 endPoint = playerCharacter.transform.position;
             beamStartPoint += (endPoint - beamStartPoint).normalized * 0.05f;
-            beamInstance.transform.right = beamStartPoint;
+            beamInstance.transform.right = beamStartPoint - transform.position;
             yield return null;
         }
         Destroy(beamInstance);
