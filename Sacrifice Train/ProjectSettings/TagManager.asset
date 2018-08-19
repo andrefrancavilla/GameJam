@@ -12,6 +12,7 @@ TagManager:
   - Bomb
   - Missile
   - Railgun
+  - PickableWeapon
   layers:
   - Default
   - TransparentFX

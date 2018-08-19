@@ -32,8 +32,10 @@ public class WeaponScript : MonoBehaviour {
     WEAPON_TYPE previousPrimaryWeapon;
     WEAPON_TYPE previousSecondaryWeapon;
 
-    public bool canFire = true;
-    
+    bool canFire = true;
+
+    public bool CanFire { get; private set; } = true;
+
     void Update ()
     {
         //Weapon auto-configuration
@@ -109,7 +111,7 @@ public class WeaponScript : MonoBehaviour {
             leftShotCooldown -= Time.deltaTime;
         if (rightShotCooldown > 0)
             rightShotCooldown -= Time.deltaTime;
-        if (canFire)
+        if (CanFire)
         {
             if (Input.GetButton("Fire1") && primaryFireT >= 1 && leftShotCooldown <= 0)
             {
@@ -125,7 +127,7 @@ public class WeaponScript : MonoBehaviour {
                     leftShotCooldown = leftShotMem;
                 }
             }
-            if (Input.GetButton("Fire2") && secondaryFireT >= 1 && leftShotCooldown <= 0)
+            if (Input.GetButton("Fire2") && secondaryFireT >= 1 && rightShotCooldown <= 0)
             {
                 if(rightShot < primaryRightProjectilesAmount)
                 {
@@ -159,6 +161,6 @@ public class WeaponScript : MonoBehaviour {
 
     public void ToggleFire()
     {
-        canFire = !canFire;
+        CanFire = !CanFire;
     }
 }

@@ -8,7 +8,8 @@ public class DragDropWeapon : MonoBehaviour
 
     Transform draggedWeapon;
     Rigidbody2D draggedWeaponRB;
-    bool isDragging = false;
+    public bool IsDragging { get; private set; } = false;
+    public bool IsChosen { get; private set; } = false;
 
     Vector3 weaponStartPosition;
     const float SPEED_MODIFIER = 600.0f;
@@ -16,31 +17,34 @@ public class DragDropWeapon : MonoBehaviour
     public Transform leftWeaponSlot;
     public Transform rightWeaponSlot;
 
-    void Start()
-    {
-        weaponScript.ToggleFire();   
-    }
-
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) TryToDrag();
-        if (isDragging && Input.GetMouseButtonUp(0)) ReleaseDragged();
-        if (isDragging) FollowMouse();
+        if (IsDragging && Input.GetMouseButtonUp(0)) ReleaseDragged();
+        if (IsDragging) FollowMouse();
     }
 
     void TryToDrag()
     {
-        RaycastHit2D hit = Physics2D.Raycast(
+        var hits = Physics2D.RaycastAll(
             Camera.main.ScreenToWorldPoint(Input.mousePosition), 
             Vector2.zero);
 
-        if (hit.collider?.tag == STRINGS.PICKABLE_WEAPON)
+        int len = hits.Length;
+        for (int i = 0; i < len; i++)
         {
-            draggedWeapon = hit.collider.transform;
-            draggedWeaponRB = draggedWeapon.GetComponent<Rigidbody2D>();
-            weaponStartPosition = draggedWeapon.position;
-            ActivateDragging();
+            if (hits[i].collider?.tag == STRINGS.PICKABLE_WEAPON)
+            {
+                draggedWeapon = hits[i].collider.transform;
+                draggedWeaponRB = draggedWeapon.GetComponent<Rigidbody2D>();
+                weaponStartPosition = draggedWeapon.position;
+                ActivateDragging();
+                break;
+            }
         }
+
+
+        
     }
 
     void FollowMouse()
@@ -114,12 +118,16 @@ public class DragDropWeapon : MonoBehaviour
             if (weaponScript.SetLeftWeapon(weapon))
             {
                 draggedWeapon.position = leftWeaponSlot.position;
+                IsChosen = true;
             }
         }
         else
         {
-            if (weaponScript.SetRightWeapon(weapon)) 
+            if (weaponScript.SetRightWeapon(weapon))
+            {
                 draggedWeapon.position = rightWeaponSlot.position;
+                IsChosen = true;
+            }
         }
 
         ResetDragging();
@@ -127,12 +135,12 @@ public class DragDropWeapon : MonoBehaviour
 
     public void ActivateDragging()
     {
-        isDragging = true;
+        IsDragging = true;
     }
 
     public void DeactivateDragging()
     {
-        isDragging = false;
+        IsDragging = false;
     }
 
     public void ReturnToOrigin()
