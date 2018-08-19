@@ -7,10 +7,18 @@ public class CowProjectile : MonoBehaviour {
     public float damage;
     public float disappearTime;
     Animator anim;
+    [SerializeField]
+    Collider2D colliderToEnable;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        StartCoroutine(EnableCollider(0.3f));
+    }
+    IEnumerator EnableCollider(float time)
+    {
+        yield return new WaitForSeconds(time);
+        colliderToEnable.enabled = true;
     }
 
     private void Update()

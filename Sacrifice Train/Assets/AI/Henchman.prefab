@@ -103,7 +103,7 @@ MonoBehaviour:
   currentHealth: 0
   myState: 4
   wagonNo: 0
-  speed: 3
+  speed: 9
   rigidbody: {fileID: 50550615155372018}
   playerController: {fileID: 0}
   weaponSpread: 0.1

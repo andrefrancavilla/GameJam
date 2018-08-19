@@ -103,9 +103,9 @@ public class HenchmanCharacter : MonoBehaviour {
     }
     IEnumerator FireWeapon()
     {
-        while((transform.position - target).magnitude>1)
+        while((transform.position - target).magnitude>19.5)
         {
-            //Debug.Log((transform.position - target).magnitude);
+            Debug.Log((transform.position - target).magnitude);
             yield return null;
         }
         //Fire weapon
