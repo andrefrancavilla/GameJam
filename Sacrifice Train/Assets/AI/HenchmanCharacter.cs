@@ -35,6 +35,8 @@ public class HenchmanCharacter : MonoBehaviour {
     GameObject projectile;
     WagonManager currentWagon;
 
+    GameObject aimDummy;
+
 	// Use this for initialization
 	void Start () {
         StartCoroutine(MoveCharacter());
@@ -45,6 +47,7 @@ public class HenchmanCharacter : MonoBehaviour {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         movementVector = Vector2.zero;
         currentHealth = maxHealth;
+        aimDummy = new GameObject();
     }
 
     // Update is called once per frame
@@ -117,7 +120,10 @@ public class HenchmanCharacter : MonoBehaviour {
             if (currentFireTime <= 0.0f)
             {
                 currentFireTime = fireRate;
-                Instantiate(projectile, transform.position, Quaternion.LookRotation(playerController.transform.position - transform.position));
+                Vector3 diff = playerController.transform.position - transform.position;
+                diff.Normalize();
+                aimDummy.transform.right = diff;
+                Instantiate(projectile, transform.position + diff*3, aimDummy.transform.rotation);
             }
             yield return null;
         }
@@ -131,20 +137,23 @@ public class HenchmanCharacter : MonoBehaviour {
         }
         //Repair weapon
         movementVector = Vector2.zero;
-        while(targetWeapon.weaponHP<=50)
+        while(targetWeapon.weaponHP<=50 && myState == HenchmenAI.HenchmenState.RepairWeapon)
         {
             targetWeapon.weaponHP += Time.deltaTime * repairRate;
             yield return null;
         }
+        if (myState == HenchmenAI.HenchmenState.RepairWeapon)
+            myState = HenchmenAI.HenchmenState.Idle;
         yield return null;
     }
     IEnumerator RepairWagon()
     {
         movementVector = Vector2.zero;
-        while (currentWagon.Health <= 1000 && myState==HenchmenAI.HenchmenState.RepairWagon)
+        while (currentWagon.health <= 1000 && myState==HenchmenAI.HenchmenState.RepairWagon)
         {            
             yield return null;
         }
+        if(myState==HenchmenAI.HenchmenState.RepairWagon)
         myState = HenchmenAI.HenchmenState.Idle;
         currentWagon.InteractWithWagon(WAGON_INTERACTION.DETACH_REPAIR_WORKER);
     }

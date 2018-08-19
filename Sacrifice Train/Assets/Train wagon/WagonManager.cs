@@ -17,8 +17,7 @@ public class WagonManager : MonoBehaviour
     const float HEALTH_PER_TICK = 10;
     #endregion
 
-    [HideInInspector]
-    public float Health { get; private set; } = MAX_HEALTH;
+    public float health  = MAX_HEALTH;
 
     [HideInInspector]
     public int RepairWorkers { get; private set; } = 0;
@@ -33,21 +32,21 @@ public class WagonManager : MonoBehaviour
     {
         float sumAddedHealth = RepairWorkers * HEALTH_PER_TICK;
 
-        if (Health + (sumAddedHealth) > MAX_HEALTH)
-            Health = MAX_HEALTH;
+        if (health + (sumAddedHealth) > MAX_HEALTH)
+            health = MAX_HEALTH;
         else
-            Health += sumAddedHealth;
+            health += sumAddedHealth;
     }
 
     void TakeDmg(float dmg)
     {
-        if (Health - dmg < MIN_HEALTH)
+        if (health - dmg < MIN_HEALTH)
         {
-            Health = MIN_HEALTH;
+            health = MIN_HEALTH;
             DisableWagon();
         }
         else
-            Health -= dmg;
+            health -= dmg;
     }
 
     void DisableWagon()

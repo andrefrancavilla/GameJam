@@ -107,7 +107,7 @@ public class HenchmenAI : MonoBehaviour {
                         henchmenList[j].ActionFireWeapon(weapon);
                         break;
                     case HenchmenState.FireMachineGuns:
-                        if(wagonRoofList[henchmenList[j].wagonNo])
+                        if(wagonRoofList[henchmenList[j].wagonNo]!=null)
                         {
                             continue;
                         }
@@ -180,7 +180,7 @@ public class HenchmenAI : MonoBehaviour {
         float tHealth = 0.0f;
         for(int i=0; i< wagonManagerList.Count; i++)
         {
-            tHealth += wagonManagerList[i].Health;
+            tHealth += wagonManagerList[i].health;
         }
 
         return tHealth;

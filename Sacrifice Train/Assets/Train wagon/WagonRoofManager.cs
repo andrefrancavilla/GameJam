@@ -17,8 +17,7 @@ public class WagonRoofManager : MonoBehaviour
     const float FADE_SECONDS = 3.0f;
     #endregion
 
-    [HideInInspector]
-    public float Health { get; private set; } = MAX_HEALTH;
+    public float Health  = MAX_HEALTH;
 
     [HideInInspector]
     public int RepairWorkers { get; private set; } = 0;

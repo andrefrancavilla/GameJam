@@ -358,6 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprRen: {fileID: 408910691}
+  Health: 1000
 --- !u!61 &408910690
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -472,6 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprRen: {fileID: 434382202}
+  Health: 1000
 --- !u!61 &434382201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -738,7 +740,6 @@ GameObject:
   - component: {fileID: 1157089827}
   - component: {fileID: 1157089826}
   - component: {fileID: 1157089825}
-  - component: {fileID: 1157089824}
   - component: {fileID: 1157089823}
   m_Layer: 0
   m_Name: TrainCoach3
@@ -760,18 +761,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyWindow: {fileID: 0}
   prisonerWindows: []
---- !u!114 &1157089824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1157089822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45e063e5cb245d42b4f0531b57b1df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprRen: {fileID: 1157089827}
 --- !u!114 &1157089825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -784,7 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   henchmenAI: {fileID: 1784643599}
-  wagonNumber: 0
+  wagonNumber: 3
   wagonWeapons:
   - {fileID: 148232520}
 --- !u!61 &1157089826
@@ -865,7 +854,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1157089822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.8, y: -2.91, z: 0}
+  m_LocalPosition: {x: 41.2, y: -2.91, z: 0}
   m_LocalScale: {x: 130.95027, y: 26.11661, z: 14.574}
   m_Children:
   - {fileID: 644239412}
@@ -931,7 +920,6 @@ GameObject:
   - component: {fileID: 1547422176}
   - component: {fileID: 1547422175}
   - component: {fileID: 1547422174}
-  - component: {fileID: 1547422173}
   - component: {fileID: 1547422172}
   m_Layer: 0
   m_Name: TrainCoach2
@@ -953,18 +941,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyWindow: {fileID: 0}
   prisonerWindows: []
---- !u!114 &1547422173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1547422171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45e063e5cb245d42b4f0531b57b1df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprRen: {fileID: 1547422176}
 --- !u!114 &1547422174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,7 +953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   henchmenAI: {fileID: 1784643599}
-  wagonNumber: 0
+  wagonNumber: 2
   wagonWeapons:
   - {fileID: 2055351547}
 --- !u!61 &1547422175
@@ -1058,7 +1034,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1547422171}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.5, y: -2.91, z: 0}
+  m_LocalPosition: {x: 20.9, y: -2.91, z: 0}
   m_LocalScale: {x: 130.95027, y: 26.11661, z: 14.574}
   m_Children:
   - {fileID: 219617714}
@@ -1110,6 +1086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprRen: {fileID: 1660082876}
+  Health: 1000
 --- !u!61 &1660082875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1192,7 +1169,6 @@ GameObject:
   - component: {fileID: 1704063212}
   - component: {fileID: 1704063214}
   - component: {fileID: 1704063217}
-  - component: {fileID: 1704063216}
   - component: {fileID: 1704063215}
   m_Layer: 0
   m_Name: TrainCoach1
@@ -1301,18 +1277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emptyWindow: {fileID: 0}
   prisonerWindows: []
---- !u!114 &1704063216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1704063211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45e063e5cb245d42b4f0531b57b1df1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprRen: {fileID: 1704063212}
 --- !u!114 &1704063217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1407,7 +1371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugDestroyWagon: 0
-  actionCooldown: 10
+  actionCooldown: 3
   wagonManagerList:
   - {fileID: 1704063217}
   - {fileID: 1547422174}
