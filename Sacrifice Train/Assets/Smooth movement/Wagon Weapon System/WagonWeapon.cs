@@ -19,8 +19,7 @@ public class WagonWeapon : MonoBehaviour {
     public AcidSpray acidSensing;
     bool acidSprayerFiring;
     PlayerController player;
-    private bool isInUse;
-    public bool IsInUse { get { return isInUse; } set { isInUse = value; } }
+    public bool IsInUse { get; set; }
 
     public RuntimeAnimatorController catapultAnimator;
 
@@ -35,12 +34,6 @@ public class WagonWeapon : MonoBehaviour {
     float tHpBarIsVisibleMem;
     int tickCount;
     GameObject hpBar;
-
-    public enum WAGON_WEAPON
-    {
-        COW_CATAPULT,
-        ACID_SPRAYER
-    }
 
     private void Awake()
     {
@@ -69,7 +62,7 @@ public class WagonWeapon : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if(isInUse)
+        if(IsInUse)
         {
 		    if(weaponType == WAGON_WEAPON.ACID_SPRAYER)
             {
@@ -105,7 +98,7 @@ public class WagonWeapon : MonoBehaviour {
             {
                 if (cooldownTimer <= 0)
                 {
-                    GetComponent<Animator>().SetTrigger("Launch");
+                    GetComponent<Animator>().SetTrigger(STRINGS.TRIGGER_LAUNCH);
                     cooldownTimer = cooldownTimerTMem;
                 }
                 else

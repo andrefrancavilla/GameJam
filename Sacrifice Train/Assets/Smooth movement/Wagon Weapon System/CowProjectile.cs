@@ -18,15 +18,15 @@ public class CowProjectile : MonoBehaviour {
         if (disappearTime > 0)
             disappearTime -= Time.deltaTime;
         else
-            anim.SetTrigger("Death");
+            anim.SetTrigger(STRINGS.TRIGGER_DEATH);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == STRINGS.PLAYER)
         {
             FindObjectOfType<PlayerController>().DamagePlayer(damage);
-            anim.SetTrigger("Death");
+            anim.SetTrigger(STRINGS.TRIGGER_DEATH);
         }
     }
 

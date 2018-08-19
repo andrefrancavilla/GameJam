@@ -34,7 +34,7 @@ public class DragDropWeapon : MonoBehaviour
             Camera.main.ScreenToWorldPoint(Input.mousePosition), 
             Vector2.zero);
 
-        if (hit.collider?.tag == TAGS_AND_NAMES.PICKABLE_WEAPON)
+        if (hit.collider?.tag == STRINGS.PICKABLE_WEAPON)
         {
             draggedWeapon = hit.collider.transform;
             draggedWeaponRB = draggedWeapon.GetComponent<Rigidbody2D>();
@@ -59,7 +59,7 @@ public class DragDropWeapon : MonoBehaviour
         RaycastHit2D hit = new RaycastHit2D(); int len = hits.Length;
         for (int i = 0; i < len; i++)
         {
-            if (hits[i].collider.tag == TAGS_AND_NAMES.WEAPON_SLOT)
+            if (hits[i].collider.tag == STRINGS.TAG_WEAPON_SLOT)
             {
                 hit = hits[i];
                 break;
@@ -68,33 +68,33 @@ public class DragDropWeapon : MonoBehaviour
         
         if (hit.collider != null)
         {
-            if (hit.collider.name == TAGS_AND_NAMES.LEFT_WEAPON_SLOT)
+            if (hit.collider.name == STRINGS.NAME_LEFT_WEAPON_SLOT)
             {
                 switch (draggedWeapon.name)
                 {
-                    case TAGS_AND_NAMES.RAILGUN:
+                    case STRINGS.TAG_RAILGUN:
                         TryApplyingWeapon(WEAPON_TYPE.RAILGUN, true);
                         break;
-                    case TAGS_AND_NAMES.MISSILE:
+                    case STRINGS.TAG_MISSILE:
                         TryApplyingWeapon(WEAPON_TYPE.MISSILE, true);
                         break;
-                    case TAGS_AND_NAMES.BOMB:
+                    case STRINGS.TAG_BOMB:
                         TryApplyingWeapon(WEAPON_TYPE.BOMBS, true);
                         break;
                 }
             }
 
-            if (hit.collider.tag == TAGS_AND_NAMES.RIGHT_WEAPON_SLOT)
+            if (hit.collider.tag == STRINGS.NAME_RIGHT_WEAPON_SLOT)
             {
                 switch (draggedWeapon.name)
                 {
-                    case TAGS_AND_NAMES.RAILGUN:
+                    case STRINGS.TAG_RAILGUN:
                         TryApplyingWeapon(WEAPON_TYPE.RAILGUN, false);
                         break;
-                    case TAGS_AND_NAMES.MISSILE:
+                    case STRINGS.TAG_MISSILE:
                         TryApplyingWeapon(WEAPON_TYPE.MISSILE, false);
                         break;
-                    case TAGS_AND_NAMES.BOMB:
+                    case STRINGS.TAG_BOMB:
                         TryApplyingWeapon(WEAPON_TYPE.BOMBS, false);
                         break;
                 }

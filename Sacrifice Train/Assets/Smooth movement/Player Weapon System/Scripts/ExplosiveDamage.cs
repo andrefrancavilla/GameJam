@@ -15,16 +15,16 @@ public class ExplosiveDamage : MonoBehaviour {
         {
             if (!hurtPlayer)
             {
-                if (col.gameObject.tag == "Enemy")
+                if (col.gameObject.tag == STRINGS.ENEMY)
                 {
                     col.GetComponent<HenchmanCharacter>().Damage(damage);
                 }
-                if (col.gameObject.tag == "Wagon_Weapon")
+                if (col.gameObject.tag == STRINGS.WAGON_WEAPON)
                     col.gameObject.GetComponent<WagonWeapon>().weaponHP -= damage;
             }
             else
             {
-                if (col.gameObject.tag == "Player")
+                if (col.gameObject.tag == STRINGS.PLAYER)
                 {
                     col.GetComponent<PlayerController>().DamagePlayer(damage);
                 }

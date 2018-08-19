@@ -26,19 +26,19 @@ public class ProjectileScript : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         /*
-         * if(collision.gameObject.tag == "Enemy")
+         * if(collision.gameObject.tag == STRINGS.ENEMY)
          *  collision.gameObject.GetComponent<EnemyAI>().Damage(damage);
         */
         if (!isExplosive)
         {
             if (!isEnemyProjectile)
             {
-                if (collision.gameObject.tag == "Wagon_Weapon")
+                if (collision.gameObject.tag == STRINGS.WAGON_WEAPON)
                     collision.gameObject.GetComponent<WagonWeapon>().weaponHP -= damage;
             }
             else
             {
-                if(collision.gameObject.tag == "Player")
+                if(collision.gameObject.tag == STRINGS.PLAYER)
                     collision.gameObject.GetComponent<PlayerController>().DamagePlayer(damage);
             }
         }

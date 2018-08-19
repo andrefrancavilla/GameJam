@@ -10,7 +10,7 @@ public class BombProjectileScript : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Player")
+        if (collision.gameObject.tag != STRINGS.PLAYER)
         {
             Collider2D[] coll = Physics2D.OverlapCircleAll(transform.position, explosionRadius, explosionInteraction.value);
             foreach (Collider2D obj in coll)
