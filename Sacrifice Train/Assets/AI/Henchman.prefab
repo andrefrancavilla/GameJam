@@ -110,6 +110,8 @@ MonoBehaviour:
   fireRate: 0.1
   repairRate: 1
   projectile: {fileID: 1026554221928546, guid: 4e29e22b2e3338746a2b2cdf1776ec50, type: 2}
+  burstFireNumber: 3
+  burstFireCooldownMultiplier: 5
 --- !u!212 &212382025070423180
 SpriteRenderer:
   m_ObjectHideFlags: 1
