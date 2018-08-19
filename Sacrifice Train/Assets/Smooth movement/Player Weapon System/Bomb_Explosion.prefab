@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d817d56b02ed24a98db32a354f7e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionRange: 4
+  explosionRange: 2.5
   damage: 16
   hurtPlayer: 0
 --- !u!198 &198151050725034186

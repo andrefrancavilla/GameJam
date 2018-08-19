@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
+    [HideInInspector]
+    public int prisonersSaved;
+    [HideInInspector]
+    public int totalPrisonersSaved;
 
     //Character movement
     public float maxHP = 100;
@@ -13,8 +18,6 @@ public class PlayerController : MonoBehaviour {
     public float deltaTimeToDecellerate; //Lower the value, the more time it will take for the player to reach 0 velocity
     public float controlResponsiveness; //The lower the value, the less responsive the controls are. Hence, the movement is more floaty the more you lower the value.
     public int maxAmountOfPrisoners;
-    [HideInInspector]
-    public int prisonersSaved;
 
     Vector2 inputAxis; //Input axis is stored here
     Rigidbody2D ShipRB;

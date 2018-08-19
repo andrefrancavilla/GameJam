@@ -113,6 +113,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &102347461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 102347462}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &102347462
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 102347461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.128, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1591083238}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &240423521
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,9 +990,9 @@ MonoBehaviour:
   catapultAnimator: {fileID: 0}
   cow: {fileID: 0}
   cowSpawn: {fileID: 0}
-  healthBar: {fileID: 0}
-  barPosition: {fileID: 0}
-  tHpBarIsVisible: 0
+  healthBar: {fileID: 1378411949665096, guid: 2f24d554f8ce97e41b6475c8ef05f81b, type: 2}
+  barPosition: {fileID: 102347462}
+  tHpBarIsVisible: 3
 --- !u!212 &1591083237
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1022,6 +1050,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1044988301}
+  - {fileID: 102347462}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
