@@ -20,7 +20,8 @@ public class HenchmenAI : MonoBehaviour {
     float actionCooldown = 10.0f;
     float currentCooldown = 0.0f;
     [SerializeField]
-    WagonManager[] wagonManagerList;
+    List<WagonManager> wagonManagerList;
+    List<WagonRoofManager> wagonRoofList;
     [SerializeField]
     PlayerController playerController;
 
@@ -40,6 +41,11 @@ public class HenchmenAI : MonoBehaviour {
         hState = new List<HenchmenState>();
         assignedHenchmen = new List<bool>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        wagonRoofList = new List<WagonRoofManager>();
+        for(int i=0; i<wagonManagerList.Count; i++)
+        {
+            wagonRoofList.Add(wagonManagerList[i].GetComponentInChildren<WagonRoofManager>());
+        }
     }
 
     // Update is called once per frame
@@ -101,6 +107,10 @@ public class HenchmenAI : MonoBehaviour {
                         henchmenList[j].ActionFireWeapon(weapon);
                         break;
                     case HenchmenState.FireMachineGuns:
+                        if(wagonRoofList[henchmenList[j].wagonNo])
+                        {
+                            continue;
+                        }
                         henchmenList[j].ActionFireMachineGun();
                         break;
                     case HenchmenState.RepairWeapon:
@@ -156,7 +166,7 @@ public class HenchmenAI : MonoBehaviour {
     float GetWeaponHealth()
     {
         float wHealth=0.0f;
-        for(int i=0; i<wagonManagerList.Length; i++)
+        for(int i=0; i<wagonManagerList.Count; i++)
         {
             for(int j=0; j<wagonManagerList[i].wagonWeapons.Count; j++)
             {
@@ -168,10 +178,11 @@ public class HenchmenAI : MonoBehaviour {
     float GetTrainHealth()
     {
         float tHealth = 0.0f;
-        for(int i=0; i< wagonManagerList.Length; i++)
+        for(int i=0; i< wagonManagerList.Count; i++)
         {
             tHealth += wagonManagerList[i].Health;
         }
+
         return tHealth;
     }
     int GetHighestPriorityTask()
@@ -191,7 +202,7 @@ public class HenchmenAI : MonoBehaviour {
     }
     public void AddHenchmen(GameObject henchman, int wagonNo)
     {
-        if(henchmenListByWagon.Count <= wagonNo)
+        while(henchmenListByWagon.Count <= wagonNo)
         {
             henchmenListByWagon.Add(new List<GameObject>());
         }
@@ -209,6 +220,7 @@ public class HenchmenAI : MonoBehaviour {
             GameObject.Destroy(henchmenListByWagon[wagonNo][i]);
         }
         henchmenListByWagon[wagonNo].Clear();
+        
     }
     public void DestroyHenchman(GameObject henchman, int wagonNo)
     {
