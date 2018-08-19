@@ -11,7 +11,7 @@ public class EnterOperationsBase : MonoBehaviour
 
     IEnumerator TransitionToBase()
     {
-        anim.SetTrigger("GoTransition");
+        anim.SetTrigger(STRINGS.TRIGGER_OPERATIONS_BASE);
         yield return new WaitForSeconds(transitionTime);
         operationsBase.SetActive(true);
         weaponScript.ToggleFire();
@@ -19,7 +19,7 @@ public class EnterOperationsBase : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if(other.tag == STRINGS.PLAYER)
             TransitionToBase();
     }
 }

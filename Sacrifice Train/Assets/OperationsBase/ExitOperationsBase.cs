@@ -9,6 +9,8 @@ public class ExitOperationsBase : MonoBehaviour
     public GameObject operationsBase;
     public Button btn;
 
+    public ReleasePrisoners releasePrisoners;
+
     void Start()
     {
         btn.onClick.AddListener(ReturnToBattle); 
@@ -23,9 +25,12 @@ public class ExitOperationsBase : MonoBehaviour
 
     void ReturnToBattle()
     {
-        dragDropWeapon.DeactivateDragging();
-        dragDropWeapon.ReturnToOrigin();
-        dragDropWeapon.ResetDragging();
-        operationsBase.SetActive(false);
+        if(releasePrisoners.DestroyPrisoners())
+        {
+            dragDropWeapon.DeactivateDragging();
+            dragDropWeapon.ReturnToOrigin();
+            dragDropWeapon.ResetDragging();
+            operationsBase.SetActive(false);
+        }
     }
 }

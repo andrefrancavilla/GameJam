@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WagonPrisonerManager : MonoBehaviour {
 
-    public Sprite emptyWindow;
-    public List<SpriteRenderer> prisonerWindows;
+    public List<Animator> prisonerWindowsAnim;
+    public PlayerController player;
 
     const float ABSORB_TIME = 6;
 
@@ -14,7 +14,7 @@ public class WagonPrisonerManager : MonoBehaviour {
     
     void Start()
     {
-        prisonerWindowsLeft = prisonerWindows.Count;
+        prisonerWindowsLeft = prisonerWindowsAnim.Count;
         currentPrisonerWindow = 0;
     }
 
@@ -22,27 +22,30 @@ public class WagonPrisonerManager : MonoBehaviour {
     {
         yield return new WaitForSecondsRealtime(ABSORB_TIME);
 
-        prisonerWindows[currentPrisonerWindow].sprite = emptyWindow;
-        prisonerWindowsLeft--;
-        currentPrisonerWindow++;
+        if(player.RegisterNewPrisoners())
+        {
+            prisonerWindowsAnim[currentPrisonerWindow].SetTrigger(STRINGS.TRIGGER_EMPTY_WINDOW);
+            prisonerWindowsLeft--;
+            currentPrisonerWindow++;
+        }
     }
 
     public void DisablePrisoners()
     {
-        for (int i = 0; i < prisonerWindows.Count; i++)
-            Destroy(prisonerWindows[i]);
+        for (int i = 0; i < prisonerWindowsAnim.Count; i++)
+            Destroy(prisonerWindowsAnim[i]);
         enabled = false;
     }
     
     public void OnCollisionEnter2D(Collision2D c)
     {
-        if (c.gameObject.tag == "Player")
+        if (c.gameObject.tag == STRINGS.PLAYER)
             StartCoroutine(AbsorbPrisoners());
     }
 
     public void OnCollisionExit2D(Collision2D c)
     {
-        if (c.gameObject.tag == "Player")
+        if (c.gameObject.tag == STRINGS.PLAYER)
             StopCoroutine(AbsorbPrisoners());
     }
 }

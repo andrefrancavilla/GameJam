@@ -17,7 +17,9 @@ public struct STRINGS
     public const string ENEMY = "Enemy";
     public const string PLAYER = "Player";
 
-
     public const string TRIGGER_DEATH = "Death";
     public const string TRIGGER_LAUNCH = "Launch";
+    public const string TRIGGER_OPERATIONS_BASE = "GoTransition";
+    public const string TRIGGER_EMPTY_WINDOW = "GoEmptyWindow";
+    public const string TRIGGER_PRISONER_RUN = "GoPrisonerRun";
 }
