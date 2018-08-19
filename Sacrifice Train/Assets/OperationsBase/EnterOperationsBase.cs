@@ -6,12 +6,12 @@ public class EnterOperationsBase : MonoBehaviour
 {
     public WeaponScript weaponScript;
     public GameObject operationsBase;
-    public Animator anim;
+    public Animator transitionToBase;
     public float transitionTime;
 
     IEnumerator TransitionToBase()
     {
-        anim.SetTrigger(STRINGS.TRIGGER_OPERATIONS_BASE);
+        transitionToBase.SetTrigger(STRINGS.TRIGGER_OPERATIONS_BASE);
         yield return new WaitForSeconds(transitionTime);
         operationsBase.SetActive(true);
         weaponScript.ToggleFire();
