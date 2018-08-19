@@ -49,13 +49,21 @@ public class ExitOperationsBase : MonoBehaviour
             transitionFromBase.SetTrigger(STRINGS.TRIGGER_FADE_TO_WHITE);
             heavenSky.SetActive(false);
             hangar.SetActive(false);
-            operationsBase.SetActive(false);
+
+            var operationsBaseCanvases = operationsBase.GetComponentsInChildren<CanvasRenderer>();
+            for (int i = 0; i < operationsBaseCanvases.Length; i++)
+            {
+                operationsBaseCanvases[i].SetAlpha(0.0f);
+            }
+
             yield return new WaitForSeconds(animDuration);
+
+            Debug.Log("code is ran");
 
             var temp = playerController.GetComponentsInChildren<SpriteRenderer>();
             for (int i = 0; i < temp.Length; i++)
             {
-                temp[i].enabled = false;
+                temp[i].enabled = true;
             }
 
             transitionFromBase.SetTrigger(STRINGS.TRIGGER_FADE_OUT_OF_WHITE);
@@ -64,6 +72,7 @@ public class ExitOperationsBase : MonoBehaviour
             wayToHeaven.SetActive(true);
             weaponScript.EnableFire();
             playerController.ToggleInTheClouds();
+            operationsBase.SetActive(false);
         }
     }
 }

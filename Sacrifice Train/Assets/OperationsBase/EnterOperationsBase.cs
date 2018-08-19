@@ -24,6 +24,13 @@ public class EnterOperationsBase : MonoBehaviour
         heavenSky.SetActive(true);
         hangar.SetActive(true);
         operationsBase.SetActive(true);
+
+        var operationsBaseCanvases = operationsBase.GetComponentsInChildren<CanvasRenderer>();
+        for (int i = 0; i < operationsBaseCanvases.Length; i++)
+        {
+            operationsBaseCanvases[i].SetAlpha(1.0f);
+        }
+
         weaponScript.DisableFire();
         playerController.ToggleInTheClouds();
 

@@ -6933,7 +6933,10 @@ MonoBehaviour:
   heavenSky: {fileID: 1985584337}
   operationsBase: {fileID: 924784043}
   releasePrisoners: {fileID: 2024614724}
-  dragDropWeapons: []
+  dragDropWeapons:
+  - {fileID: 373018589}
+  - {fileID: 1233160048}
+  - {fileID: 2120421429}
   animDuration: 1
 --- !u!114 &2111190242
 MonoBehaviour:
