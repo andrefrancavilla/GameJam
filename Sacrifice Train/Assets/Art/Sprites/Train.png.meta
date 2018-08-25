@@ -1,26 +1,22 @@
 fileFormatVersion: 2
-guid: 50afe34b949704d6e8d0051b9a24cdac
+guid: 7efc75ab252264f04bb53e7ea3cee253
 TextureImporter:
   fileIDToRecycleName:
-    21300000: SKELETON_0
-    21300002: SKELETON_1
-    21300004: SKELETON_2
-    21300006: SKELETON_3
-    21300008: SKELETON_4
-    21300010: SKELETON_5
-    21300012: SKELETON_6
-    21300014: SKELETON_7
-    21300016: SKELETON_8
-    21300018: SKELETON_9
-    21300020: SKELETON_10
-    21300022: SKELETON_11
-    21300024: SKELETON_12
-    21300026: SKELETON_13
-    21300028: SKELETON_14
-    21300030: Pipe
-    21300032: Foot
-    21300034: CatapultRdy
-    21300036: CatapultFlipper
+    21300000: Train_0
+    21300002: Train_1
+    21300004: Train_2
+    21300006: Train_3
+    21300008: Train_4
+    21300010: Train_5
+    21300012: Train_6
+    21300014: Train_7
+    21300016: Train_8
+    21300018: Train_9
+    21300020: Train_10
+    21300022: Wheel
+    21300024: BrokenRoof
+    21300026: Roof
+    21300028: Roofbehind
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -145,12 +141,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SKELETON_0
+      name: Train_0
       rect:
         serializedVersion: 2
-        x: 105
-        y: 361
-        width: 99
+        x: 0
+        y: 384
+        width: 128
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -159,159 +155,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd4751088b0b74080ad76fc03794599f
+      spriteID: c7469b232dfe743b59285de9033be8d7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SKELETON_1
+      name: Train_1
       rect:
         serializedVersion: 2
-        x: 224
-        y: 365
-        width: 124
-        height: 105
-      alignment: 9
-      pivot: {x: 0.8905842, y: 0.30963832}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f59868451b238474086e17b6bf03b73e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SKELETON_2
-      rect:
-        serializedVersion: 2
-        x: 350
-        y: 363
-        width: 121
-        height: 110
-      alignment: 9
-      pivot: {x: 0.8748542, y: 0.2484031}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9df4d1bb80926484bb5d8fd0e30a704b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SKELETON_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 251
-        width: 124
-        height: 71
-      alignment: 9
-      pivot: {x: 0.8500086, y: 0.37861553}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e985634bd683b48dfaacf0e49832da64
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SKELETON_4
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 34
-        width: 77
-        height: 70
-      alignment: 9
-      pivot: {x: 0.63977623, y: 0.86241955}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0cc6f308efc94663a1ee24ee16a4fc8
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SKELETON_5
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 240
-        width: 122
-        height: 107
-      alignment: 9
-      pivot: {x: 0.87178165, y: 0.17668623}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e6d5766ba52514e9aad59766dd3b73c6
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SKELETON_6
-      rect:
-        serializedVersion: 2
-        x: 359
-        y: 236
-        width: 109
-        height: 116
-      alignment: 9
-      pivot: {x: 0.47178832, y: 0.06259708}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a0d8b83723de4915be5a16bdd321548
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SKELETON_7
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 200
-        width: 44
-        height: 36
-      alignment: 9
-      pivot: {x: 0.482528, y: 0.3291626}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c6febc2618f0a4cfb9d32826f9cea1d4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SKELETON_8
-      rect:
-        serializedVersion: 2
-        x: 232
-        y: 114
-        width: 95
-        height: 120
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -319,39 +175,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5dd7dcc00702f4a14882531468ba0169
+      spriteID: a23a903d84d724dd782f0a36b91938c9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SKELETON_9
+      name: Train_2
       rect:
         serializedVersion: 2
-        x: 339
-        y: 176
-        width: 85
-        height: 62
-      alignment: 9
-      pivot: {x: 0.48191133, y: 0.33183193}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8273adb86d52144a08bc974aa7ef4463
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SKELETON_10
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 4
-        width: 124
-        height: 123
+        x: 256
+        y: 384
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -359,79 +195,99 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7a8d0aecd4374cb48695749e04e27f1
+      spriteID: 20c03fde755a4451e9c8a73b61cdf0ae
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SKELETON_11
+      name: Train_3
       rect:
         serializedVersion: 2
-        x: 108
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccd470cbbf35b4bc88ff033b1d5dfcd6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a7040c35b02a4e01bff40999191d5ef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c302e43a06424f0dadb5abf4050157b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Train_6
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 128
-        width: 62
-        height: 49
-      alignment: 9
-      pivot: {x: 0.8347865, y: 0.7196484}
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be68187bb782a47f893eb78388b1ced1
+      spriteID: ba9bd0df25dcc4785b5aa9ecf501423e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SKELETON_12
+      name: Train_7
       rect:
         serializedVersion: 2
-        x: 182
-        y: 109
-        width: 34
-        height: 75
-      alignment: 9
-      pivot: {x: 0.6808867, y: 0.28474486}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e638100b6dd84ae7ac0b6a1679b6a82
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SKELETON_13
-      rect:
-        serializedVersion: 2
-        x: 333
-        y: 100
-        width: 76
-        height: 60
-      alignment: 9
-      pivot: {x: 0.23459189, y: 0.14124133}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 917b1edf9396d44a88a2005f0ade545b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SKELETON_14
-      rect:
-        serializedVersion: 2
-        x: 423
+        x: 128
         y: 128
-        width: 71
-        height: 57
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -439,19 +295,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d1cfbfeb8e5d40aca59379889c15528
+      spriteID: dab89308fbfe149a0823fd80805675a5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Pipe
+      name: Train_8
       rect:
         serializedVersion: 2
-        x: 249
-        y: 7
-        width: 85
-        height: 97
+        x: 256
+        y: 128
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -459,19 +315,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3363979df168f42e093fd924cf213b47
+      spriteID: 6996c5f09f48b4931bfa5e0f2baf43f5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Foot
+      name: Train_9
       rect:
         serializedVersion: 2
-        x: 342
-        y: 7
-        width: 47
-        height: 29
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -479,47 +335,107 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f25531b65ea474d459338da34a0a7095
+      spriteID: a71b83aa9fee748efbd0b41e0fb28c38
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatapultRdy
+      name: Train_10
       rect:
         serializedVersion: 2
-        x: 14
-        y: 335
-        width: 111
-        height: 19
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d54f7377dae5c45f397af46705b69855
+      spriteID: 9353cac594c654748b0325e6031b3424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CatapultFlipper
+      name: Wheel
       rect:
         serializedVersion: 2
-        x: 47
-        y: 366
-        width: 45
-        height: 107
+        x: 270
+        y: 22
+        width: 112
+        height: 81
       alignment: 9
-      pivot: {x: 0.29499504, y: 0.025806177}
+      pivot: {x: 0.47254398, y: 0.6993105}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df916213a57214d6aada4ec89330a0bc
+      spriteID: bcc78f53e9e744fcb847cdc36d83fe19
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BrokenRoof
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 417
+        width: 128
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90663e48dfa6c4fb2b033ff803a1baec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Roof
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 467
+        width: 128
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3cd624a1d7204f65bd05b9a7a8e8273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Roofbehind
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c385d68b24bcf45dead47d3f4a25d45d
       vertices: []
       indices: 
       edges: []
@@ -527,7 +443,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e145526892e40471a946d736df9bd898
+    spriteID: d7615e80d23774d598e67cbeb1627baa
     vertices: []
     indices: 
     edges: []

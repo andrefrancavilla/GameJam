@@ -27,7 +27,7 @@ public class PlayerCameraScript : MonoBehaviour
         }
         realSize = baseCamSize + additionalSize;
         realSize = Mathf.Clamp(realSize, 0, 7.9f);
-        Camera.main.orthographicSize = Mathf.Lerp(Camera.main.orthographicSize, realSize, t);
+        Camera.main.orthographicSize= Mathf.Lerp(Camera.main.orthographicSize, realSize, t);
         yPos = 0.95f * Camera.main.orthographicSize - 4.74f;
         gameObject.transform.position = new Vector3(transform.position.x, yPos, transform.position.z);
     }

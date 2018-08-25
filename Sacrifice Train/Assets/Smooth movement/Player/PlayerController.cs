@@ -75,7 +75,11 @@ public class PlayerController : MonoBehaviour
     public void ToggleInTheClouds()
     {
         invulnerability = !invulnerability;
-        if(invulnerability) transform.position = backToBattleTeleportLocation.position;
+        if (invulnerability)
+        {
+            transform.position = backToBattleTeleportLocation.position;
+            ShipRB.velocity = Vector2.zero;
+        }
         canMove = !canMove;
     }
 }

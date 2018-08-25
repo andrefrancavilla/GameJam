@@ -476,7 +476,8 @@ MonoBehaviour:
   weaponProjectile: {fileID: 1026554221928546, guid: d9c4812f2ad18cf4092b444c23e472b3,
     type: 2}
   projectileSpawnPosition: {fileID: 4806267815911954}
-  primaryWeaponFireRate: 0
+  primaryWeaponFireRate: 2
+  debugToggleTargeting: 0
 --- !u!114 &114967312077812586
 MonoBehaviour:
   m_ObjectHideFlags: 1

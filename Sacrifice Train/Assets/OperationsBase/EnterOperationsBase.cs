@@ -11,6 +11,8 @@ public class EnterOperationsBase : MonoBehaviour
     public GameObject hangar;
     public GameObject heavenSky;
     public GameObject operationsBase;
+    public GameObject gameBackground;
+    public GameObject trains;
 
     public float animDuration = 1.0f;
 
@@ -43,10 +45,9 @@ public class EnterOperationsBase : MonoBehaviour
     {
         transitionToBase.SetTrigger(STRINGS.TRIGGER_FADE_TO_WHITE);
         yield return new WaitForSeconds(animDuration);
-        
-        var sprRen = GetComponent<SpriteRenderer>();
-        var newAlpha = new Color(sprRen.color.r, sprRen.color.g, sprRen.color.b, 0);
-        sprRen.color = newAlpha;
+
+        trains.SetActive(false);
+        gameBackground.SetActive(false);
 
         operationsBase.SetActive(true);
         heavenSky.SetActive(true);

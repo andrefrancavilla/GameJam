@@ -14,6 +14,8 @@ public class ExitOperationsBase : MonoBehaviour
     public GameObject hangar;
     public GameObject heavenSky;
     public GameObject operationsBase;
+    public GameObject gameBackground;
+    public GameObject trains;
 
     public ReleasePrisoners releasePrisoners;
     public List<DragDropWeapon> dragDropWeapons;
@@ -66,9 +68,8 @@ public class ExitOperationsBase : MonoBehaviour
 
             yield return new WaitForSeconds(animDuration);
 
-            var sprRen = wayToHeaven.GetComponent<SpriteRenderer>();
-            var newAlpha = new Color(sprRen.color.r, sprRen.color.g, sprRen.color.b, 1);
-            sprRen.color = newAlpha;
+            gameBackground.SetActive(true);
+            trains.SetActive(true);
             wayToHeaven.SetActive(true);
 
             var temp = playerController.GetComponentsInChildren<SpriteRenderer>();

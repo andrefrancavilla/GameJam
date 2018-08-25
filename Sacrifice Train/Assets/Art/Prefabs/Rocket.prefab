@@ -98,7 +98,7 @@ Transform:
   m_GameObject: {fileID: 1811447344274042}
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
   m_LocalPosition: {x: -2.9393, y: 0.50868, z: 0}
-  m_LocalScale: {x: 0.5351573, y: 0.5351574, z: 0.5351574}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4044934624168310}
   - {fileID: 4070410273203514}
@@ -181,6 +181,7 @@ MonoBehaviour:
   damage: 0
   isExplosive: 1
   explosion: {fileID: 1653201096039084, guid: dda64d7c19d3143c8b06d2d81611183a, type: 2}
+  isEnemyProjectile: 0
 --- !u!198 &198009619338557222
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -4804,7 +4805,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1473330075
-  m_SortingLayer: 0
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300010, guid: 2391d4552e5f94b2fa6181c8110970bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4850,7 +4851,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1473330075
-  m_SortingLayer: 0
+  m_SortingLayer: 5
   m_SortingOrder: -2
   m_Sprite: {fileID: 21300004, guid: 2391d4552e5f94b2fa6181c8110970bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

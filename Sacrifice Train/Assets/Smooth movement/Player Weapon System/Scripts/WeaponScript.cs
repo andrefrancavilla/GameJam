@@ -117,7 +117,8 @@ public class WeaponScript : MonoBehaviour {
             {
                 if (leftShot < primaryLeftProjectilesAmount)
                 {
-                    Instantiate(primaryProjectile, projectileSpawnPositions[primaryWeaponIndex].position + Vector3.up * Random.Range(-primaryWeaponBulletSpread / 2, primaryWeaponBulletSpread / 2), projectileSpawnPositions[primaryWeaponIndex].rotation);
+                    var temp = Instantiate(primaryProjectile, projectileSpawnPositions[primaryWeaponIndex].position + Vector3.up * Random.Range(-primaryWeaponBulletSpread / 2, primaryWeaponBulletSpread / 2), projectileSpawnPositions[primaryWeaponIndex].rotation);
+                    SetProjectileProperties(temp.transform, currentLeftWeapon);
                     primaryFireT = 0;
                     leftShot++;
                 }
@@ -131,7 +132,8 @@ public class WeaponScript : MonoBehaviour {
             {
                 if(rightShot < primaryRightProjectilesAmount)
                 {
-                    Instantiate(secondaryProjectile, projectileSpawnPositions[secondaryWeaponIndex].position + Vector3.up * Random.Range(-secondaryWeaponBulletSpread / 2, secondaryWeaponBulletSpread / 2), projectileSpawnPositions[secondaryWeaponIndex].rotation);
+                    var temp = Instantiate(secondaryProjectile, projectileSpawnPositions[secondaryWeaponIndex].position + Vector3.up * Random.Range(-secondaryWeaponBulletSpread / 4, secondaryWeaponBulletSpread / 4), projectileSpawnPositions[secondaryWeaponIndex].rotation);
+                    SetProjectileProperties(temp.transform, currentRightWeapon);
                     secondaryFireT = 0;
                     rightShot++;
                 }
@@ -142,6 +144,26 @@ public class WeaponScript : MonoBehaviour {
                 }
             }
         }
+    }
+
+    void SetProjectileProperties(Transform trans, WEAPON_TYPE weaponType)
+    {
+        float scaleToUse = 0;
+        switch (weaponType)
+        {
+            case WEAPON_TYPE.RAILGUN:
+                scaleToUse = 0.85f;
+                break;
+            case WEAPON_TYPE.MISSILE:
+                scaleToUse = 1.0f;
+                break;
+            case WEAPON_TYPE.BOMBS:
+                scaleToUse = 0.7f;
+                break;
+            default:
+                break;
+        }
+        trans.localScale = new Vector3(scaleToUse, scaleToUse, scaleToUse);
     }
 
     public bool SetLeftWeapon(WEAPON_TYPE weapon)
